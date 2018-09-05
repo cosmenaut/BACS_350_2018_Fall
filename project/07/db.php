@@ -2,7 +2,7 @@
 
     // Form the DB Connection string
     $port = '3306';
-    $dbname = 'uncobacs_subscribers';
+    $dbname = 'uncobacs350_subscribers';
     $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
     $username = 'uncobacs_350';
     $password = 'BACS_350';
