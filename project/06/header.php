@@ -9,7 +9,7 @@
             ?>
 
         </title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
 
     </head>
     <body>
@@ -22,4 +22,4 @@
             </h1>
         </header>
         <main>
-            <p>Remove this placeholder text...</p>
+            
