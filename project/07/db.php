@@ -5,7 +5,7 @@
     $dbname = 'uncobacs350_subscribers';
     $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
     $username = 'uncobacs_350';
-    $password = 'BACS_350';
+    $password = 'BACS350';
 
     echo "<h1>DB Connection</h1>" .
         "<p>Connect String:  $db_connect, $username, $password</p>";
