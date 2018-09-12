@@ -1,51 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <title>UNC BACS 350 - Demo Server</title>
-        <link rel="stylesheet" href="style.css">
+        <title>Index</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-        <header>
-            <img src="Bear3.png" alt="Bear Logo">
-            <h1>BACS 350 - Demo Server</h1>
-        </header>
         <main>
 
-            <h2> Website Projects</h2>
-            <ul>
-                <li>
-                    <a href="project/01/index.php">Exercise #1</a>
-                </li>
-                <li>
-                    <a href="project/02/index.php">Exercise #2</a>
-                </li>
-                <li>
-                    <a href="project/03/index.php">Exercise #3</a>
-                </li>
-            </ul>
+    <h1>BACS 350 - Cosme Martinez</h1>
+    <img src="banner.png">
+        <p>
+            This is my home page for the UNC BACS 350 class
+        </p>
+    <h2>Test Links</h2>
+    <ul>
+        <li><a href="https://unco-bacs.org/bacs_350/index.php">Class demo server</a></li>
+        <li><a href="https://seamansguide.com/guide/PhpApps/Index">Class web server</a></li>
+        <li><a href="/index.php">My server</a></li>
+        <li><a href="../01/index.html">Project #1</a></li>
+        <li><a href="index.php">Project #2</a></li>
+        <li><a href="page.php">Project #2 - page.php</a></li>
+        <li><a href="page.html">Project #2 - page.html</a></li>
+        <li><a href="banner.png">Project #2 - Bear Banner</a></li>
+        <li><a href="styles.css">Project #2 - styles.css</a></li>
+        <li><a href="project_3.php">Project #3</a></li>
+        <li><a href="project_4.php">Project #4 - Database</a></li>
+        <li><a href="project_5.php">Project #5 - subscribe</a></li>
+        <li><a href="project_6.php">Project #6 - DB connection</a></li>
+        <li><a href="project_7.php">Project #7 - Github</a></li>
 
-            <h2>Code Templates</h2>
-            <ul>
-                <li>
-                    <a href="https://seamansguide.com/guide/PhpApps/templates/page.php">Simple Page</a>
-                </li>
-                <li>
-                    <a href="https://seamansguide.com/guide/PhpApps/templates/header.php">Header for Page</a>
-                </li>
-                <li>
-                    <a href="https://seamansguide.com/guide/PhpApps/templates/footer.php">Footer for Page</a>
-                </li>
-                <li>
-                    <a href="https://seamansguide.com/guide/PhpApps/templates/files.php">Files Utilities</a>
-                </li>
-                <li>
-                    <a href="https://seamansguide.com/guide/PhpApps/templates/dirlist.php">Directory Listing</a>
-                </li>
-            </ul>
+
+
+    </ul>
+    
+
 
         </main>
-
     </body>
 </html>
-
