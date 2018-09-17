@@ -8,7 +8,7 @@
     <body>
         <li><a href="../index.html">Home Page</a></li>
         <li><a href="https://github.com/cosmenaut">GITHUB</a></li>
-        <h1>BACS 350 - Project #9</h1>
+        <h1>BACS 350 - Project #9 - TEST</h1>
 
         <?php
             require "select.php";
