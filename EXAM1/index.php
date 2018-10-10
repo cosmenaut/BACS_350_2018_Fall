@@ -1,13 +1,33 @@
-<h1>BOOKS</h1>
-<?php
-    // Setup a page title variable
-    $page_title = "BOOKS";
-    // Include the page start
-    include 'header.php';
-    // Include the main page content
-    echo '<h1>BOOKS</h1><p>BODY</p>';
+ <?php
+
+    // Start the page
+    $page_title = 'EXAM 1';
+
+    echo '<h1>contacts</h1>';
+
+    // Connect to the database
+    require 'db.php';
+
+
+    // Show the list after the insert
     require 'select.php';
-    echo '<a href="insert.php">Add Record</a>';
-    // Include the page end
-    include 'footer.php';
- ?>
+
+
+    // Add a record
+    echo '<a href="insert.php">Add a contact</a>';
+
+    echo '<form action="insert.php" method="get">
+        
+        <p><label>name:</label> &nbsp; <input type="text" name="name"></p>
+        <p><label>address:</label> &nbsp; <input type="text" name="address"></p>
+        <p><label>phone number:</label> &nbsp; <input type="text" name="phone"></p>
+        
+        <p><input type="submit" value="Add contact"/></p>
+        
+    </form>';
+    require 'test.php';
+
+
+    // End the page
+
+?>

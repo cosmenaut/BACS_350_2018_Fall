@@ -15,7 +15,9 @@
     // Loop over all of the subscribers to make a bullet list
     $subscribers = $statement->fetchAll();
     echo '<ul>';
-    foreach (contacts as $s) {echo '<li>' . $s['id'] . ', ' . $s['name'] . ', ' . $s['address'] . '</li>';}
+    foreach (contacts as $s) {
+        echo '<li>' . $s['id'] . ', ' . $s['name'] . ', ' . $s['address'] . '</li>';
+    }
     echo '</ul>';
 
 ?>

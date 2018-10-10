@@ -27,6 +27,9 @@
         <li><a href="08/project_8.php">Project #8</a></li>
         <li><a href="09/project_9.php">Project #9</a></li>
         <li><a href="10/project_10.php">Project #10</a></li>
+        <li><a href="11/index.php">Project #11</a></li>
+        <li><a href="14/index.php">Project #14</a></li>
+
 
     </ul>
 
