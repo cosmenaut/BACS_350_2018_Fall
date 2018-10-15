@@ -1,22 +1,51 @@
 <?php
 
-    // Setup a page title variable
-    $page_title = "PAGE TITLE";
+    // Start the page
+    require_once 'views.php';
+ 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'MVC Pattern';
+    begin_page($site_title, $page_title);
 
-    // Include the page start
-    include 'header.php';
 
-    // Include the main page content
-    echo '<h1>BACS 350 - Project #8</h1><p>BODY</p>';
+    // Page Content
+    echo '<p><a href="pattern.php">MVC Pattern</a></p>';
 
-    // Show the subscribers
-    require 'select.php';
+    require_once 'subscriber_db.php';
+    require_once 'subscriber_views.php';
 
-    echo '<a href="insert.php">Add Record</a>';
+    class Subscribers {
+        
+        public $db;
 
-    require_once '../templates/test.php';
+        function __construct() {
+            $this->db =  subscribers_connect();
+        }
 
-    // Include the page end
-    include 'footer.php';
+        function query() {
+            return query_subscribers($this->db);
+        }
+        
+        function show_subscribers() {
+            render_list($this->query());
+        }
+    }
 
- ?>
+    $subscribers = new Subscribers();
+
+
+    // View for listing subscribers
+    $subscribers->show_subscribers();
+
+
+//    // Form view to add subscriber
+//    add_subscriber_form();
+//
+//
+//    // Button to clear
+//    echo '<a href="delete.php">Reset Subscribers</a>';
+//
+//        
+    // End the page
+    end_page();
+?>

@@ -4,9 +4,7 @@
 
         <meta charset="UTF-8">
         <title>
-            <?php
-                echo $page_title;
-            ?>
+            <?php echo $page_title; ?>
 
         </title>
         <link rel="stylesheet" href="/bacs_350/style.css">
@@ -16,10 +14,10 @@
 
         <header>
             <h1>
-                <?php
-                    echo $page_title;
-                ?>
+                <img src="/bacs_350/images/Bear3.png" alt="Bear Logo"/>
+
+                <?php echo $page_title; ?>
             </h1>
         </header>
         <main>
-            <p>The text content of the page.</p>
+            <a href="/bacs_350">Home</a>

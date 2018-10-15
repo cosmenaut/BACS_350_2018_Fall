@@ -1,25 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Index</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
-        <main>
+<?php 
+    require_once 'views.php';
+    $page_title = 'BACS 350 - Demo Server';
+    begin_page($page_title, 'Home');
+?>
 
-    <h1>BACS 350 - Cosme Martinez</h1>
-    <img src="banner.png">
-        <p>
-            UNC BACS 350
-        </p>
-    <h2>Test Links</h2>
-    <ul>
-        <li><a href="https://unco-bacs.org/bacs_350/index.php">Class demo server</a></li>
-        <li><a href="https://seamansguide.com/guide/PhpApps/Index">Class web server</a></li>
-        <li><a href="https://facebook.com">FACEBOOK</a></li>
-        <li><a href="project/">Projects</a></li>
 
-    </ul>
-        </main>
-    </body>
-</html>
+<h2>Website Project Solutions</h2>
+<ul>
+    <li>
+        <a href="http://seamansguide.com/guide/PhpApps/Index.md">Class Server</a>
+    </li>
+    <li>
+        <a href="http://seamansguide.com/guide/PhpApps/docs/Patterns.md">Design Patterns</a>
+    </li>
+    <li>
+        <a href="solution">Project Solutions</a>
+    </li>
+    <li>
+        <a href="project">My Projects</a>
+    </li>
+    <li>
+        <a href="templates">Code Templates</a>
+    </li>
+
+</ul>
+
+
+<?php end_page(); ?>
