@@ -2,7 +2,7 @@
 
     // Connect to the database
     require_once 'subscriber_db.php';
-    $db = db_connect();
+    $db = subscribers_connect();
 
 
     // Pick out the inputs

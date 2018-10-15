@@ -6,13 +6,13 @@
 
     // Connect to the remote database
     function remote_connect() {
-        
-        $host = 'localhost';
+
         $port = '3306';
         $dbname = 'sbkacbmy_subscribers';
+        $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
         $username = 'sbkacbmy_cmart';
         $password = 'BACS_350';
-        $db_connect = "mysql:host=$host:$port;dbname=$dbname";
+        return db_connect($db_connect, $username, $password);
 
     }
 
@@ -22,16 +22,18 @@
 
         $host = 'localhost';
         $dbname = 'subscribers';
-        $username = 'sbkacbmy_cmart';
-        $password = 'BACS_350';
+        $username = 'root';
+        $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";
         return db_connect($db_connect, $username, $password);
 
     }
 
+
     // Open the database or die
     function db_connect($db_connect, $username, $password) {
-        echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
+        
+        // echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
         try {
             $db = new PDO($db_connect, $username, $password);
             // echo '<p><b>Successful Connection</b></p>';
@@ -48,12 +50,12 @@
     // Open the database or die
     function subscribers_connect() {
         
-        $local = ($_SERVER['SERVER_NAME'] == 'localhost');
-        if ($local) {
-            return local_connect();
+        $remote = ($_SERVER['SERVER_NAME'] == 'unco-bacs.org');
+        if ($remote) {
+            return remote_connect();
         } 
         else {
-            return remote_connect();
+            return local_connect();
         }
         
     }
