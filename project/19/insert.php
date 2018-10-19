@@ -7,17 +7,18 @@
 
 
     // Connect to the database
-    require_once 'subscriber.php';
+    require_once 'notes.php';
 
 
     // Pick out the inputs
-    $name  = filter_input(INPUT_POST, 'name');
-    $email = filter_input(INPUT_POST, 'email');
+    $title  = filter_input(INPUT_POST, 'title');
+    $date  = filter_input(INPUT_POST, 'date');
+    $body = filter_input(INPUT_POST, 'body');
 
 
     // Add record
-    if ($subscribers->add ($name, $email)) {
-//      echo '<p><b>Insert successful</b>&nbsp;<a href="index.php">Subscribers</a></p>';
+    if ($notes->add ($title, $date, $body)) {
+//      echo '<p><b>Insert successful</b>&nbsp;<a href="index.php">notes</a></p>';
 //      $this->query();
         header("Location: index.php");
     }

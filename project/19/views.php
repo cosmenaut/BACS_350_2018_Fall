@@ -6,11 +6,15 @@
 
     function begin_page($site_title, $page_title) {
 
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        header("Cache-Control: no-store, no-cache, must-revalidate");
+        
         echo '
             <!DOCTYPE html>
             <html lang="en">
                 <head>
-
+        
                     <meta charset="UTF-8">
                     <title>' . $page_title . '</title>
 
@@ -40,7 +44,17 @@
                 </body>
             </html>
         ';
+        
+    }
 
+
+    /*
+        render_simple_page -- Create the HTML page.
+    */
+
+    function render_simple_page($title, $text) {
+        
+        echo "<h1>$title</h1><p>$text</p>";
     }
 
 ?>

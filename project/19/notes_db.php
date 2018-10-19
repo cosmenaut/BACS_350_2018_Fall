@@ -4,7 +4,7 @@
     function remote_connect() {
 
         $port = '3306';
-        $dbname = 'sbkacbmy_subscribers';
+        $dbname = 'sbkacbmy_notes';
         $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
         $username = 'sbkacbmy_cmart';
         $password = 'BACS_350';
@@ -17,7 +17,7 @@
     function local_connect() {
 
         $host = 'localhost';
-        $dbname = 'subscribers';
+        $dbname = 'notes';
         $username = 'root';
         $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";
@@ -44,7 +44,7 @@
 
 
     // Open the database or die
-    function subscribers_connect() {
+    function notes_connect() {
         
         $local = ($_SERVER['SERVER_NAME'] == 'localhost');
         if ($local) {
