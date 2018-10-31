@@ -1,7 +1,7 @@
 <?php
 
     // Bring in logs logic
-    require_once 'db.php';
+    require_once 'music_db.php';
     require_once 'log_crud.php';
     require_once 'log_views.php';
 
@@ -13,7 +13,7 @@
         private $db;
 
         function __construct() {
-            $this->db =  log_connect();
+            $this->db =  music_connect();
         }
 
         
@@ -35,7 +35,7 @@
         //Views
         
         function show_log() {
-            render_list($this->query());
+            render_list1($this->query());
         }
         
         function add_form() {

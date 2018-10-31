@@ -25,12 +25,6 @@
 
                     <header>
                         <img src="Bear.png" alt="Bear Logo"/>
-                        <img src="githubrepo.png" alt="Github Repo"/>
-                        <img src="localRepo.png" alt="Local Repo"/>
-                        <img src="GHDesktop.png" alt="GH desktop"/>
-                        <img src="CShistory.png" alt="Command Shell History"/>
-                        <img src="updatedRepo.png" alt="Marks Commits"/>
-                        <img src="sync.png" alt="Sync"/>
                         <h1>' . $site_title . '</h1>
                         <h2>' . $page_title . '</h2>
                     </header>

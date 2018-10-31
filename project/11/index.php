@@ -2,13 +2,13 @@
 
     require_once 'views.php';
  
-    $site_title = 'project #11';
+    $site_title = 'BACS 350 - Demo Server';
     $page_title = 'Page Logging';
     begin_page($site_title, $page_title);
 
 
     // Page Content
-    echo '<p><a href="..">Projects</a></p>';
+    echo '<p><a href="..">Solutions</a></p>';
 
     
     // Bring in log logic

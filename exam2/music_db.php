@@ -4,9 +4,9 @@
     function remote_connect() {
 
         $port = '3306';
-        $dbname = 'uncobacs_subscribers';
+        $dbname = 'sbkacbmy_music';
         $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
-        $username = 'uncobacs_350';
+        $username = 'sbkacbmy_cmart';
         $password = 'BACS_350';
         return db_connect($db_connect, $username, $password);
 
@@ -17,7 +17,7 @@
     function local_connect() {
 
         $host = 'localhost';
-        $dbname = 'subscribers';
+        $dbname = 'music';
         $username = 'root';
         $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";
@@ -44,7 +44,7 @@
 
 
     // Open the database or die
-    function log_connect() {
+    function music_connect() {
         
         $local = ($_SERVER['SERVER_NAME'] == 'localhost');
         if ($local) {
@@ -55,6 +55,5 @@
         }
         
     }
-
 
 ?>
