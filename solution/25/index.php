@@ -11,24 +11,6 @@
     $log->log_page("solution/25");
 
 
-    // render_card -- create HTML for visual card
-    function render_card($title, $body) {
-        $template = '
-            <div class="card">
-
-                <div class="card-header">
-                    <h2>{{ title }}</h2>
-                </div>
-
-                <div class="card-body card-padding">
-                    {{ body }}
-                </div>
-            </div>';
-        $settings = array('title' => $title, 'body' => $body);
-        return transform_text($template, $settings);
-    }  
-
-
     $cities = array(array('Greeley', 'Denver', 'Colo Springs'),
                     array('Cheyenne', 'Gillette', 'Rock Springs'));
 
@@ -63,8 +45,8 @@
     $settings = array(
         "page_title" => "My Projects", 
         "site_title" => "BACS 350 Projects",
-        "style"      => 'style.css',
-//        "style"      => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+//        "style"      => 'style.css',
+        "style"      => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);
