@@ -1,13 +1,13 @@
 body {
     font-size: 18px;
-    color: #0E3D65;
+    color: green;
     margin: 20px;
     padding: 10px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1,h2,h3 {
-    color: #0E3D65;
+    color: green;
     margin: 10px;
     padding: 10px;
 }
@@ -47,7 +47,7 @@ p {
 }
 
 .card {
-    border: 5px solid green;
+    border: 5px solid pink;
     box-shadow: 2px 2px 5px gray;
     padding: 20px;
     margin: 50px;

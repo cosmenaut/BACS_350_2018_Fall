@@ -37,7 +37,8 @@
                 <ul>
             ';
         foreach ($list as $s) {
-            echo '<li>' . $s['id'] . ', ' . $s['artist'] . ', ' . $s['artwork'] . '</li>';
+            $imgpart = "<img src='".$s['artwork']."' style='width:200px; height:200px'>";
+            echo '<li>' . $s['id'] . ', ' . $s['artist'] . ', ' . $imgpart . '</li>';
         }
         echo '
                 </ul>

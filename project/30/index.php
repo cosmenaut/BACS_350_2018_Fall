@@ -3,10 +3,9 @@
     // Start the page
     require_once 'views.php';
  
-    $site_title = 'Cosmenaut';
-    $page_title = 'Music Man';
-    $settings = array("content" => "none");
-    echo render_page($settings);
+    $site_title = 'Cosme';
+    $page_title = 'Exam 2';
+    begin_page($site_title, $page_title);
     
     // Bring in music logic
     require_once 'music.php';
@@ -27,6 +26,10 @@
   require_once 'log.php';
     $log->add('solution/11/index.php');
     $log->show_log();
+
+
+    end_page();
+
 
     end_page();
 ?>
