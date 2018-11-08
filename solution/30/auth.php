@@ -46,6 +46,11 @@
 
     // Check to see if user is already authenticated
     function logged_in () {
+        global $log;
+        $log->log("logged_in: isset=" . isset($_SESSION['LOGGED_IN']));
+        if (isset($_SESSION['LOGGED_IN'])) {
+            $log->log("logged_in: logged_in=" . $_SESSION['LOGGED_IN']);
+        }
         return (isset($_SESSION['LOGGED_IN']) and $_SESSION['LOGGED_IN']=='TRUE') ;
     }
 
