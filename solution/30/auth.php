@@ -135,7 +135,7 @@
             <div class="card">
                 <h3>Login</h3>
             
-                <form action="index.php" method="post">
+                <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
                     <p><input type="submit" value="Login" class="btn"></p>
@@ -149,7 +149,7 @@
 
 
     // Show the sign up
-    function sign_up_form() {
+    function sign_up_form($page) {
         global $log;
         $log->log("Show Sign Up Form");
         
@@ -157,13 +157,15 @@
             <div class="card">
                 <h3>Sign Up</h3>
             
-                <form action="index.php" method="post">
+                <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
                     <p><label>First Name:</label> &nbsp; <input type="text" name="first"></p>
                     <p><label>Last Name:</label> &nbsp; <input type="text" name="last"></p>
                     <p><input type="submit" value="Sign Up" class="btn"/></p>
                     <input type="hidden" name="action" value="register">
+                    <input type="hidden" name="next" value="' . $page . '">
+                    
                 </form>
             </div>
             ';
