@@ -17,7 +17,7 @@
     $content .= render_button('Logout', 'private.php?action=logout');
     $content .= render_button('Sign Up', 'private.php?action=signup');
 
-    $login = $auth->handle_actions();
+    $login = handle_auth_actions();
     if (empty($login)) {
         require_login('private.php');
     }
