@@ -18,10 +18,10 @@
             return sign_up_form();
         }
         if ($action == 'login') {
-            return login_form();
+            return login_form('private.php');
         }
         if ($action == 'logout') {
-            return logout();
+            return logout('private.php?action=login');
         }
         
         $action = filter_input(INPUT_POST, 'action');
@@ -60,10 +60,10 @@
 
 
     // Cancel the login
-    function logout () {
+    function logout ($page) {
         session_start ();
         unset($_SESSION['LOGGED_IN']);
-        header('Location: index.php');
+        header("Location: $page");
     }
 
 
@@ -127,7 +127,7 @@
 
 
     // Show the login
-    function login_form() {
+    function login_form($page) {
         global $log;
         $log->log("Show Login Form");
         
@@ -140,6 +140,7 @@
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
                     <p><input type="submit" value="Login" class="btn"></p>
                     <input type="hidden" name="action" value="validate">
+                    <input type="hidden" name="next" value="' . $page . '">
                 </form>
             </div>
             ';
