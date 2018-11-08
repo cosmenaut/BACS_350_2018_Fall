@@ -15,7 +15,7 @@
     $content .= render_button('Show Log', 'pagelog.php');
     
 
-    content .= '
+    $content .= '
     <h2>Public Page</h2>
     <p>
         This solution demonstrates the use of authentication code.
