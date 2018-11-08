@@ -36,6 +36,24 @@
     }
     else {
         $content = $login;
+        $content .= show_login();
+        
+        $content .= render_button('Show Log', 'pagelog.php');
+        $content .= render_button('Login', 'private.php?action=login');
+        $content .= render_button('Logout', 'private.php?action=logout');
+        $content .= render_button('Sign Up', 'private.php?action=signup');
+        
+        $content .= show_login();
+
+        $content .= '
+        <h2>Private Page</h2>
+        <p>
+            This solution demonstrates the use of authentication code.
+            Visiting this page requires a login.
+
+            <a href="index.php">Public Page</a>
+        </p>
+        ';
     }
 
     
