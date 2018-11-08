@@ -38,7 +38,7 @@
         global $log;
         $log->log("Validate: $email, $password");
         if (is_valid_login ($db, $email, $password)) {
-//            session_start ();
+            session_start ();
             $_SESSION['LOGGED_IN'] = 'TRUE';
         }
     }
@@ -46,6 +46,7 @@
 
     // Check to see if user is already authenticated
     function logged_in () {
+        session_start ();
         global $log;
         $log->log("logged_in: isset=" . isset($_SESSION['LOGGED_IN']));
         if (isset($_SESSION['LOGGED_IN'])) {
@@ -57,6 +58,7 @@
 
     // Cancel the login
     function logout () {
+        session_start ();
         unset($_SESSION['LOGGED_IN']);
         header('Location: index.php?action=login');
     }
