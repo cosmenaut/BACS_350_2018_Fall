@@ -13,9 +13,9 @@
     $content = render_button('Templates', '../../templates');
     $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
-    $content .= render_button('Login', 'index.php?action=login');
-    $content .= render_button('Logout', 'index.php?action=logout');
-    $content .= render_button('Sign Up', 'index.php?action=signup');
+    $content .= render_button('Login', 'private.php?action=login');
+    $content .= render_button('Logout', 'private.php?action=logout');
+    $content .= render_button('Sign Up', 'private.php?action=signup');
 
     // Try this login
 
