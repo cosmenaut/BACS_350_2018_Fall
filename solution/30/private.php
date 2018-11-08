@@ -33,20 +33,19 @@
         </p>
         ';
 
-        // Create main part of page content
-        $settings = array(
-            "site_title" => "System Admins",
-            "page_title" => "User Authentication", 
-            "logo"       => "Bear.png",
-            "style"      => 'style.css',
-            "content"    => $content);
-
-        echo render_page($settings);
-
     }
     else {
-        $content .= $login;
+        $content = $login;
     }
+
     
-    
+    // Create main part of page content
+    $settings = array(
+        "site_title" => "System Admins",
+        "page_title" => "User Authentication", 
+        "logo"       => "Bear.png",
+        "style"      => 'style.css',
+        "content"    => $content);
+
+    echo render_page($settings);
 ?>
