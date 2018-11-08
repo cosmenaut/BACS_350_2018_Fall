@@ -38,7 +38,7 @@
         global $log;
         $log->log("Validate: $email, $password");
         if (is_valid_login ($db, $email, $password)) {
-            session_start ();
+//            session_start ();
             $_SESSION['LOGGED_IN'] = 'TRUE';
         }
     }
