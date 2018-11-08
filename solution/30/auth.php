@@ -20,6 +20,9 @@
         if ($action == 'login') {
             return login_form();
         }
+        if ($action == 'logout') {
+            return logout();
+        }
         
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'register') {
@@ -60,7 +63,7 @@
     function logout () {
         session_start ();
         unset($_SESSION['LOGGED_IN']);
-        header('Location: index.php?action=login');
+        header('Location: index.php');
     }
 
 

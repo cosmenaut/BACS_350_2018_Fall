@@ -14,6 +14,7 @@
     $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
     $content .= render_button('Login', 'index.php?action=login');
+    $content .= render_button('Logout', 'index.php?action=logout');
     $content .= render_button('Sign Up', 'index.php?action=signup');
 
     // Try this login
