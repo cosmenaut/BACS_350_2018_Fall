@@ -33,7 +33,7 @@
 
     $content .= show_login();
 
-    content .= '
+    $content .= '
     <h2>Private Page</h2>
     <p>
         This solution demonstrates the use of authentication code.
