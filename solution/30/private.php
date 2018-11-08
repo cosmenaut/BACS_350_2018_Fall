@@ -36,11 +36,6 @@
         $content .= render_button('Sign Up', 'private.php?action=signup');
         $content .= $login;
     }
-
-
-    // Display login info
-    $content .= show_login();
-
     
 
     // Create main part of page content

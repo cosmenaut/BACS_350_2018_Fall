@@ -1,15 +1,18 @@
 <?php
  
 /*
-    User Auth
+
+    API for Authentication
     
-        password verification
-        login
-        register user
-        is_logged_in
-        user admin table
+    usage: 
+        require_once 'auth.php';  // Setup auth code
+        
+        require_login();   // Go to login if needed
+        logout();          // Clear the session
+        sign_up();         // Sign up form for new user
         
 */
+
     require_once 'db.php';
 
 
@@ -34,6 +37,23 @@
         if ($action == 'validate') {
             return validate($db, $email, $password);
         }
+    }
+
+
+    // Check to see that the password in OK
+    function is_valid_login ($db, $email, $password) {
+        
+        global $log;
+        $query = 'SELECT password FROM administrators WHERE email=:email';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $row = $statement->fetch();
+        $statement->closeCursor();
+        $hash = $row['password'];
+        $log->log("User login check: $email, $hash");
+        return password_verify($password, $hash);
+        
     }
 
 
@@ -72,7 +92,6 @@
 
     // Set the password into the administrator table
     function register_user($db) {
-        
         $email    = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
         $first    = filter_input(INPUT_POST, 'first');
@@ -94,38 +113,6 @@
         
         $statement->execute();
         $statement->closeCursor();
-    
-    }
-
-
-    // Display if password is valid or not
-    function show_login () {
-        global $log;
-        if (logged_in()) {
-            $log->log("User is Logged in");
-            return '<h3>Is Valid</h3>';
-        }
-        else {
-            $log->log("Bad user login");
-            return '<h3>NOT Valid</h3>';
-        }
-    }
-
-
-    // Check to see that the password in OK
-    function is_valid_login ($db, $email, $password) {
-        
-        global $log;
-        $query = 'SELECT password FROM administrators WHERE email=:email';
-        $statement = $db->prepare($query);
-        $statement->bindValue(':email', $email);
-        $statement->execute();
-        $row = $statement->fetch();
-        $statement->closeCursor();
-        $hash = $row['password'];
-        $log->log("User login check: $email, $hash");
-        return password_verify($password, $hash);
-        
     }
 
 
@@ -147,7 +134,6 @@
                 </form>
             </div>
             ';
-        
     }
 
 
@@ -180,53 +166,7 @@
                 </form>
             </div>
             ';
-        
     }
 
-
-
-/*
-    Object API for Authentication
-    
-    usage: 
-        require_once 'auth.php';  // Setup auth code
-        
-        $auth->require_login();   // Go to login if needed
-        $auth->logout();          // Clear the session
-        $auth->sign_up();         // Sign up form for new user
-        
-*/
-
-    // My log list
-    class Authenticate {
-
-        private $db;
-
-        function __construct($db) {
-            $this->db =  $db;
-        }
-
-       
-        function register() {
-            return register_user($this->db);
-        }
-        
-        
-        function require_login() {
-            if (! $this->logged_in()) {
-                header ('Location: login.php');
-            }
-        }
-        
-        
-        function validate ($email, $password) {
-            return validate ($this->db, $email, $password);
-        }
-
-    }
-
-
-    // Create a list object and connect to the database
-    $auth = new Authenticate($db);
 
 ?>
