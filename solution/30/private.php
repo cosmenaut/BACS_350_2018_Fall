@@ -17,20 +17,14 @@
     $content .= render_button('Logout', 'private.php?action=logout');
     $content .= render_button('Sign Up', 'private.php?action=signup');
 
-    // Try this login
-
-    //    $email = "me@here.com";
-    //    $password = 'Rock on dude!';
-    //
-    //    // User Setup:
-    //    // require_once 'db.php';
-    //    // register_user($db, $email, $password, 'New', 'User');
-    //        
-    //    $content .= $auth->show_valid ($email, $password);
-
-    $content .= $auth->handle_actions();
-
-
+    $login = $auth->handle_actions();
+    if (empty($login)) {
+        require_login('private.php');
+    }
+    else {
+        $content .= $login;
+    }
+    
     $content .= show_login();
 
     $content .= '

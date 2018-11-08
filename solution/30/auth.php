@@ -10,9 +10,12 @@
         user admin table
         
 */
+    require_once 'db.php';
+
 
     // Controller for user authentication
-    function handle_auth_actions($db) {
+    function handle_auth_actions() {
+        global $db;
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
             return sign_up_form();
@@ -100,11 +103,11 @@
         global $log;
         if (logged_in()) {
             $log->log("User is Logged in");
-            return '<p>Is Valid</p>';
+            return '<h3>Is Valid</h3>';
         }
         else {
             $log->log("Bad user login");
-            return '<p>NOT Valid</p>';
+            return '<h3>NOT Valid</h3>';
         }
     }
 
@@ -145,6 +148,14 @@
             </div>
             ';
         
+    }
+
+
+    // Do a login if needed
+    function require_login ($page){
+        if (! logged_in ()) {
+            header("Location: $page?action=login");
+        }
     }
 
 
@@ -195,11 +206,7 @@
             $this->db =  $db;
         }
 
-        function handle_actions() {
-            return handle_auth_actions($this->db);
-        }
-        
-        
+       
         function register() {
             return register_user($this->db);
         }
@@ -220,7 +227,6 @@
 
 
     // Create a list object and connect to the database
-    require_once 'db.php';
     $auth = new Authenticate($db);
 
 ?>
