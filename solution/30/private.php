@@ -19,18 +19,19 @@
         $content .= render_button('Solutions', '..');
         $content .= render_button('Show Log', 'pagelog.php');
         
-        $content .= '
-        <h2>Private Page</h2>
+        $content .= '<h2>Private Page</h2>
         <p>
             This solution demonstrates the use of authentication code.
             Visiting this page requires a login.
-
+        </p><p>
             <a href="index.php">Public Page</a>
-        </p>
-        ';
+        </p>';
     }
     else {
+<<<<<<< HEAD
         
+=======
+>>>>>>> 5274bf45cfdddfb73ca8b71e48376b810d331e9a
         $content = $login;
     }
     
