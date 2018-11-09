@@ -8,18 +8,16 @@
     // Log the page load
     $log->log_page();
 
-    // Display the page content
-    $content = render_button('Templates', '../../templates');
-    $content .= render_button('Solutions', '..');
-    $content .= render_button('Show Log', 'pagelog.php');
-    
 
     // Check on login
     $login = handle_auth_actions();
     if (empty($login)) {
         require_login('private.php');
         
-        $content .= render_button('Logout', 'private.php?action=logout');
+        // Display the page content
+        $content = render_button('Templates', '../../templates');
+        $content .= render_button('Solutions', '..');
+        $content .= render_button('Show Log', 'pagelog.php');
         
         $content .= '
         <h2>Private Page</h2>
@@ -32,9 +30,8 @@
         ';
     }
     else {
-        $content .= render_button('Login', 'private.php?action=login');
-        $content .= render_button('Sign Up', 'private.php?action=signup');
-        $content .= $login;
+        
+        $content = $login;
     }
     
 
@@ -44,6 +41,7 @@
         "page_title" => "User Authentication", 
         "logo"       => "Bear.png",
         "style"      => 'style.css',
+        'user'       => user_info(),
         "content"    => $content);
 
     echo render_page($settings);
