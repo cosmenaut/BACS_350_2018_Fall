@@ -5,11 +5,10 @@
 
 
     // Show buttons to go to other pages
-    $content = render_button('Templates', 'index.php');
-    $content .= render_button('Solutions', '../solution');
-    $content .= render_button('Show Log', 'pagelog.php');
+    $content = render_button('Brain', 'index.php');
 
-
+    
+    // Page Content
     $log->handle_actions();
     $log->log_page();
 
@@ -17,8 +16,10 @@
     // Show page history
     $content .=  $log->show_log();
   
+
     // Add form
     $content .=  $log->show_add('pagelog.php');
+
 
     // Show Page
     $settings = array(

@@ -6,4 +6,5 @@ This exterior brain is a tool that allows you to be what you are good at while t
 
 * [BACS 350 Projects](http://unco-bacs.org/bacs_350/solution)
 * [Notes App](notes.php)
+* [Page Log](pagelog.php)
 

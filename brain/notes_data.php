@@ -187,7 +187,7 @@
     function note_list_view ($table) {
         global $page;
         $s = '<div class="card">';
-        $s .= render_button('Add note', "$page?action=add") . '<br><br>';
+//        $s .= render_button('Add note', "$page?action=add") . '<br><br>';
         $s .= '<table>';
         $s .= '<tr><th>Title</th><th>Body</th></tr>';
         foreach($table as $row) {
