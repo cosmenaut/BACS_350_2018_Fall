@@ -102,7 +102,7 @@
     // render_markdown -- Convert markdown text to HTML
     function render_markdown($markdown) {
         $Parsedown = new Parsedown();
-        return $Parsedown->text($markdown)
+        return $Parsedown->text($markdown);
     }
 
 
