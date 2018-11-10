@@ -14,7 +14,10 @@
 
     // Convert the Markdown into HTML
     $Parsedown = new Parsedown();
-    $content = $Parsedown->text($markdown) . $notes->list_view();
+
+    $content = handle_actions() . 
+        $Parsedown->text($markdown) . 
+        $notes->list_view();
     
 
     // Create main part of page content
