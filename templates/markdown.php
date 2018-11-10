@@ -61,7 +61,9 @@ def function():
     $settings = array(
         "site_title" => "BACS 350 Projects",
         "page_title" => "Markdown Parser", 
+        "logo"       => "Bear.png",
         "style"      => 'style.css',
+        'user'       => '',
         "content"    => $content);
 
     echo render_page($settings);
