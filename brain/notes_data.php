@@ -18,19 +18,25 @@
             $body = filter_input(INPUT_POST, 'body');
             date_default_timezone_set("America/Denver");
             $date = date('Y-m-d g:is a');
-            $query = "INSERT INTO notes (title, body, date) VALUES (:title, :body, :date);";
+            
+            $query = "INSERT INTO notes (title, date, body) VALUES (:title, :date, :body);";
+            
+            $log->log("Add Record: $date, $title, $body");
+            
             global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':title', $title);
-            $statement->bindValue(':body', $body);
             $statement->bindValue(':date', $date);
+            $statement->bindValue(':body', $body);
             $statement->execute();
             $statement->closeCursor();
+            
             global $page;
             header("Location: $page");
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
-            echo "<p>Error: $error_message</p>";
+            global $log;
+            $log->log("**Error**: $error_message **");
             die();
         }
     }
