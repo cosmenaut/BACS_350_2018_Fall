@@ -20,7 +20,7 @@
     $settings = array(
         "site_title" => "Exterior Brain",
         "page_title" => "A smarter tool", 
-        "style"      => 'style.css',
+        "style"      => 'https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);

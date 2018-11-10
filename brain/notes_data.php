@@ -14,13 +14,16 @@
     // Add a new record
     function add_note() {
         try {
-            $name  = filter_input(INPUT_POST, 'name');
-            $email = filter_input(INPUT_POST, 'email');
-            $query = "INSERT INTO subscribers (name, email) VALUES (:name, :email);";
+            $title = filter_input(INPUT_POST, 'title');
+            $body = filter_input(INPUT_POST, 'body');
+            date_default_timezone_set("America/Denver");
+            $date = date('Y-m-d g:is a');
+            $query = "INSERT INTO notes (title, body, date) VALUES (:title, :body, :date);";
             global $db;
             $statement = $db->prepare($query);
-            $statement->bindValue(':name', $name);
-            $statement->bindValue(':email', $email);
+            $statement->bindValue(':title', $title);
+            $statement->bindValue(':body', $body);
+            $statement->bindValue(':date', $date);
             $statement->execute();
             $statement->closeCursor();
             global $page;
@@ -38,7 +41,7 @@
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
         if ($action == 'delete' and !empty($id)) {
-            $query = "DELETE from subscribers WHERE id = :id";
+            $query = "DELETE from notes WHERE id = :id";
             global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
@@ -52,7 +55,7 @@
 
     // Lookup Record using ID
     function get_note($id) {
-        $query = "SELECT * FROM subscribers WHERE id = :id";
+        $query = "SELECT * FROM notes WHERE id = :id";
         global $db;
         $statement = $db->prepare($query);
         $statement->bindValue(':id', $id);
@@ -65,7 +68,7 @@
 
     // Query for all notes
     function query_notes () {
-        $query = "SELECT * FROM subscribers";
+        $query = "SELECT * FROM notes";
         global $db;
         $statement = $db->prepare($query);
         $statement->execute();
@@ -76,17 +79,20 @@
     // Update the database
     function update_note () {
         $id    = filter_input(INPUT_POST, 'id');
-        $name  = filter_input(INPUT_POST, 'name');
-        $email = filter_input(INPUT_POST, 'email');
+        $title = filter_input(INPUT_POST, 'title');
+        $body  = filter_input(INPUT_POST, 'body');
+        date_default_timezone_set("America/Denver");
+        $date  = date('Y-m-d g:is a');
         
         // Modify database row
-        $query = "UPDATE subscribers SET name = :name, email = :email WHERE id = :id";
+        $query = "UPDATE notes SET title = :title, body = :body, date = :date WHERE id = :id";
         global $db;       
         $statement = $db->prepare($query);
 
         $statement->bindValue(':id', $id);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':email', $email);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':body', $body);
+        $statement->bindValue(':date', $date);
 
         $statement->execute();
         $statement->closeCursor();
@@ -107,9 +113,9 @@
             <div class="card">
                 <h3>Add note</h3>
                 <form action="' . $page . '" method="post">
-                    <p><label>Name:</label> &nbsp; <input type="text" name="name"></p>
-                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
-                    <p><input type="submit" value="Sign Up"/></p>
+                    <p><label>Title:</label> &nbsp; <input type="text" name="title"></p>
+                    <p><label>Body:</label> &nbsp; <textarea name="body"></textarea></p>
+                    <p><input type="submit" value="Add Note"/></p>
                     <input type="hidden" name="action" value="create">
                 </form>
             </div>
@@ -127,8 +133,8 @@
             <div class="card">
                 <h3>Edit note</h3>
                 <form action="' . $page . '" method="post">
-                    <p><label>Name:</label> &nbsp; <input type="text" name="name" value="' . $name . '"></p>
-                    <p><label>Email:</label> &nbsp; <input type="text" name="email" value="' . $email . '"></p>
+                    <p><label>Title:</label> &nbsp; <input type="text" name="title" value="' . $name . '"></p>
+                    <p><label>Body:</label> &nbsp; <textarea name="body">' . $name . '</textarea></p>
                     <p><input type="submit" value="Save Record"/></p>
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="id" value="' . $id . '">
@@ -183,7 +189,7 @@
         $s = '<div class="card">';
         $s .= render_button('Add note', "$page?action=add") . '<br><br>';
         $s .= '<table>';
-        $s .= '<tr><th>Name</th><th>Email</th></tr>';
+        $s .= '<tr><th>Title</th><th>Bodys</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
             $email = $row[2];
