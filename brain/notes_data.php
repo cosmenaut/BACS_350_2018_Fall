@@ -13,6 +13,8 @@
 
     // Add a new record
     function add_note() {
+        global $log;
+        
         try {
             $title = filter_input(INPUT_POST, 'title');
             $body = filter_input(INPUT_POST, 'body');
@@ -35,7 +37,6 @@
             header("Location: $page");
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
-            global $log;
             $log->log("**Error**: $error_message **");
             die();
         }
