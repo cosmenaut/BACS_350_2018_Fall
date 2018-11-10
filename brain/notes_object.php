@@ -1,6 +1,6 @@
 <?php
 
-    // Create a database connection
+    require_once 'views.php';
     require_once 'db.php';
     require_once 'log.php';
 
