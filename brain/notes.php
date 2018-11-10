@@ -5,6 +5,7 @@
     require_once 'log.php';
     require_once 'files.php';
     require_once 'Parsedown.php';
+    require_once 'notes_object.php';
     
 
     // Markdown Text

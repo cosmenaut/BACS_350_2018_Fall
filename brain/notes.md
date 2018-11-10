@@ -2,5 +2,5 @@
 
 Remember things by typing notes to your future self.
 
-* [Brain](brain.php)
+* [Brain](index.php)
 * [Add Note](notes.php?action=add)
