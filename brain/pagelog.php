@@ -1,30 +1,31 @@
 <?php
 
-    // Start the page
     require_once 'views.php';
- 
-    $site_title = 'BACS 350 - Demo Server';
-    $page_title = 'Display Pages loaded';
-    begin_page($site_title, $page_title);
-
-
-    // Page Content
-    echo '<p><a href="..">Solutions</a></p>';
-    echo '<p><a href="index.php">Subscribers</a></p>';
-      
-
-    // Handle any actions required
     require_once 'log.php';
+
+
+    // Show buttons to go to other pages
+    $content = render_button('Templates', 'index.php');
+    $content .= render_button('Solutions', '../solution');
+    $content .= render_button('Show Log', 'pagelog.php');
+
+
     $log->handle_actions();
-    
+    $log->log_page();
+
 
     // Show page history
-    $log->show_log();
+    $content .=  $log->show_log();
+  
 
+    // Show Page
+    $settings = array(
+        "site_title" => "Brain",
+        "page_title" => "Page Loading History", 
+        'logo'       => 'Bear.png',
+        "style"      => 'style.css',
+        "content"    => $content);
 
-    // Clear the list by sending "action" of "clear" to this view
-    echo '<p><a href="pagelog.php?action=clear" class="btn">Clear Log</a></p>';
+    echo render_page($settings);
 
-
-    end_page();
 ?>
