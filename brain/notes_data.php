@@ -189,12 +189,12 @@
         $s = '<div class="card">';
         $s .= render_button('Add note', "$page?action=add") . '<br><br>';
         $s .= '<table>';
-        $s .= '<tr><th>Title</th><th>Bodys</th></tr>';
+        $s .= '<tr><th>Title</th><th>Body</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
-            $email = $row[2];
+            $title = $row[2];
             $delete = render_link("delete", "$page?id=$row[0]&action=delete");
-            $row = array($edit, $email, $delete);
+            $row = array($edit, $title, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table></div>';
