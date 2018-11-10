@@ -3,7 +3,7 @@
     require_once 'views.php'; 
     require_once 'log.php';
     require_once 'files.php';
-    require_once 'notes_object.php';
+    require_once 'notes_data.php';
     
 
     // Page content
@@ -14,7 +14,7 @@
     $settings = array(
         "site_title" => "Exterior Brain",
         "page_title" => "Notes App", 
-        "style"      => 'style.css',
+        "style"      => 'https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);

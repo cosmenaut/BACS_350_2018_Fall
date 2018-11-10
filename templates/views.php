@@ -1,4 +1,6 @@
 <?php
+    require_once 'Parsedown.php';
+
 
     // article_settings -- Create the HTML page for one article.
     function article_settings($title, $body, $author) {
@@ -94,6 +96,19 @@
         header("Expires: 0");
         header("Cache-Control: no-store, no-cache, must-revalidate");
         return render_template("page.html", $settings);
+    }
+
+
+    // render_markdown -- Convert markdown text to HTML
+    function render_markdown($markdown) {
+        $Parsedown = new Parsedown();
+        return $Parsedown->text($markdown);
+    }
+
+
+    // render_markdown_file -- Convert a file to HTML
+    function render_markdown_file($path) {
+        return render_markdown(read_file($path));
     }
 
 
