@@ -17,13 +17,15 @@
     // Show page history
     $content .=  $log->show_log();
   
+    // Add form
+    $content .=  $log->show_add('pagelog.php');
 
     // Show Page
     $settings = array(
         "site_title" => "Brain",
         "page_title" => "Page Loading History", 
         'logo'       => 'Bear.png',
-        "style"      => 'style.css',
+        "style"      => 'https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);
