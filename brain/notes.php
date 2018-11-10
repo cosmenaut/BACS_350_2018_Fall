@@ -8,7 +8,7 @@
     
 
     // Markdown Text
-    $markdown = read_file('brain.md');
+    $markdown = read_file('notes.md');
 
 
     // Convert the Markdown into HTML
@@ -19,7 +19,7 @@
     // Create main part of page content
     $settings = array(
         "site_title" => "Exterior Brain",
-        "page_title" => "A smarter tool", 
+        "page_title" => "Notes App", 
         "style"      => 'style.css',
         "content"    => $content);
 

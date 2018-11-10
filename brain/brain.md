@@ -1,39 +1,9 @@
-# Markdown Cheatsheet
+# Brain
 
-## Formatting Styles
-    
-Normal 
+Computers remember and Humans decide
 
-*Italic*
+This exterior brain is a tool that allows you to be what you are good at while taking care of your business.
 
-**Bold**
+* [BACS 350 Projects](http://unco-bacs.org/bacs_350/solution)
+* [Notes App](notes.php)
 
-***This***
-
-
-## Lists and Paragraphs
-
-### Bullet Lists
-
-* List item 1
-* List item 2
-
-### Numbered Lists
-
-1. Milk
-2. Cookies
-
-
-### Paragraphs
-
-Paragraph 1
-
-Paragraph 2
-
-
-## Preformatted
-
-```
-def function():
-    try_this()
-```
