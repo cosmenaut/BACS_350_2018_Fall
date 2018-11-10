@@ -7,12 +7,17 @@
     $page = 'notes.php';
 
 
+    /************************/
+    /*      D A T A         */
+    /************************/
+
     // Add a new record
-    function add_note($db) {
+    function add_note() {
         try {
             $name  = filter_input(INPUT_POST, 'name');
             $email = filter_input(INPUT_POST, 'email');
             $query = "INSERT INTO subscribers (name, email) VALUES (:name, :email);";
+            global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':name', $name);
             $statement->bindValue(':email', $email);
@@ -26,6 +31,74 @@
             die();
         }
     }
+
+
+    // Delete Database Record
+    function delete_note($id) {
+        $action = filter_input(INPUT_GET, 'action');
+        $id = filter_input(INPUT_GET, 'id');
+        if ($action == 'delete' and !empty($id)) {
+            $query = "DELETE from subscribers WHERE id = :id";
+            global $db;
+            $statement = $db->prepare($query);
+            $statement->bindValue(':id', $id);
+            $statement->execute();
+            $statement->closeCursor();
+        }
+        global $page;
+        header("Location: $page");
+    }
+    
+
+    // Lookup Record using ID
+    function get_note($id) {
+        $query = "SELECT * FROM subscribers WHERE id = :id";
+        global $db;
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $record = $statement->fetch();
+        $statement->closeCursor();
+        return $record;
+    }
+
+
+    // Query for all notes
+    function query_notes () {
+        $query = "SELECT * FROM subscribers";
+        global $db;
+        $statement = $db->prepare($query);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
+
+    // Update the database
+    function update_note () {
+        $id    = filter_input(INPUT_POST, 'id');
+        $name  = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email');
+        
+        // Modify database row
+        $query = "UPDATE subscribers SET name = :name, email = :email WHERE id = :id";
+        global $db;       
+        $statement = $db->prepare($query);
+
+        $statement->bindValue(':id', $id);
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':email', $email);
+
+        $statement->execute();
+        $statement->closeCursor();
+        
+        global $page;
+        header("Location: $page");
+    }
+
+
+    /************************/
+    /*      V I E W S       */
+    /************************/
 
     // Show form for adding a record
     function add_note_view() {
@@ -43,22 +116,6 @@
         ';
     }
 
-
-    // Delete Database Record
-    function delete_note($db, $id) {
-        $action = filter_input(INPUT_GET, 'action');
-        $id = filter_input(INPUT_GET, 'id');
-        if ($action == 'delete' and !empty($id)) {
-            $query = "DELETE from subscribers WHERE id = :id";
-            $statement = $db->prepare($query);
-            $statement->bindValue(':id', $id);
-            $statement->execute();
-            $statement->closeCursor();
-        }
-        global $page;
-        header("Location: $page");
-    }
-    
 
     // Show form for adding a record
     function edit_note_view($record) {
@@ -81,66 +138,42 @@
     }
 
 
-    // Lookup Record using ID
-    function get_note($db, $id) {
-        $query = "SELECT * FROM subscribers WHERE id = :id";
-        $statement = $db->prepare($query);
-        $statement->bindValue(':id', $id);
-        $statement->execute();
-        $record = $statement->fetch();
-        $statement->closeCursor();
-        return $record;
-    }
-
-
     // Handle all action verbs
-    function handle_actions() {
+    function render_notes_view() {
         $id = filter_input(INPUT_GET, 'id');
         global $notes;
         global $log;
-
+        global $db;
+        
         // POST
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'create') {    
             $log->log('note CREATE');                    // CREATE
-            $notes->add();
+            add_note();
         }
         if ($action == 'update') {
             $log->log('note UPDATE');                    // UPDATE
-            $notes->update();
+            update_note ();
         }
 
         // GET
         $action = filter_input(INPUT_GET, 'action');
         if (empty($action)) {                                  
             $log->log('note READ');                      // READ
-            return $notes->list_view();
+            return note_list_view(query_notes());
         }
-       if ($action == 'add') {
+        if ($action == 'add') {
             $log->log('note Add View');
-            return $notes->add_view();
-        }
-        if ($action == 'clear') {
-            $log->log('note DELETE ALL');
-            return $notes->clear();
+            return add_note_view();
         }
         if ($action == 'delete') {
             $log->log('note DELETE');                    // DELETE
-            return $notes->delete($id);
+            return delete_note($id);
         }
         if ($action == 'edit' and ! empty($id)) {
             $log->log('note Edit View');
-            return $notes->edit_view($id);
+            return edit_note_view(get_note($id));
         }
-    }
-       
-
-    // Query for all notes
-    function query_notes ($db) {
-        $query = "SELECT * FROM subscribers";
-        $statement = $db->prepare($query);
-        $statement->execute();
-        return $statement->fetchAll();
     }
 
 
@@ -163,99 +196,5 @@
         return $s;
     }
 
-
-    // Update the database
-    function update_note ($db) {
-        $id    = filter_input(INPUT_POST, 'id');
-        $name  = filter_input(INPUT_POST, 'name');
-        $email = filter_input(INPUT_POST, 'email');
-        
-        // Modify database row
-        $query = "UPDATE subscribers SET name = :name, email = :email WHERE id = :id";
-        $statement = $db->prepare($query);
-
-        $statement->bindValue(':id', $id);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':email', $email);
-
-        $statement->execute();
-        $statement->closeCursor();
-        
-        global $page;
-        header("Location: $page");
-    }
- 
-
-    /* -------------------------------------------------------------
-    
-                        S U B S C R I B E R S
-    
-     ------------------------------------------------------------- */
-
-    // My note list
-    class notes {
-
-        // Database connection
-        private $db;
-
-        
-        // Automatically connect
-        function __construct() {
-            global $db;
-            $this->db =  $db;
-        }
-
-        
-        // CRUD
-        
-        function add() {
-            return add_note ($this->db);
-        }
-        
-        function query() {
-            return query_notes($this->db);
-        }
-        
-    
-        function clear() {
-            return clear_notes($this->db);
-        }
-        
-        function delete() {
-            delete_note($this->db, $id);
-        }
-        
-        function get($id) {
-            return get_note($this->db, $id);
-        }
-        
-        function update() {
-            update_note($this->db);
-        }
-        
-        
-        // Views
-        
-        function handle_actions() {
-            return handle_actions();
-        }
-        
-        function add_view() {
-            return add_note_view();
-        }
-        
-        function edit_view($id) {
-            return edit_note_view($this->get($id));
-        }
-        
-        function list_view() {
-            return note_list_view($this->query());
-        }
-        
-    }
-
-
-    // Create a list object and connect to the database
-    $notes = new notes;
 
 ?>
