@@ -27,7 +27,7 @@ header {
     border: 4px solid yellow;
     background-color: blue;
     border-radius: 20px;
-/*    padding: 40px;*/
+    padding: 40px;
 }
 
 header h1,
