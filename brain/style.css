@@ -1,7 +1,6 @@
-/*
 body {
     font-size: 18px;
-    color: #0E3D65;
+    color: black;
     margin: 20px;
     padding: 20px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -10,18 +9,18 @@ body {
 h1,
 h2,
 h3 {
-    color: #0E3D65;
+    color: blue;
 }
 
 h3 {
-    color: #F6B018;
+    color: green;
 }
 
 header {
-    border: 4px solid #0E3D65;
-    background-color: #F6B018;
+    border: 4px solid yellow;
+    background-color: white;
     border-radius: 20px;
-    color: #0E3D65;
+    color: red;
 }
 
 header h1,
@@ -63,4 +62,3 @@ pre {
     float: left;
     width: 40%;
 }
-*/
