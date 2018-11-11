@@ -119,15 +119,13 @@
     function add_note_view() {
         global $page;
         return '
-            <div class="card">
-                <h3>Add note</h3>
-                <form action="' . $page . '" method="post">
-                    <p><label>Title:</label> &nbsp; <input type="text" name="title"></p>
-                    <p><label>Body:</label> &nbsp; <textarea name="body"></textarea></p>
-                    <p><input type="submit" value="Add Note"/></p>
-                    <input type="hidden" name="action" value="create">
-                </form>
-            </div>
+            <h3>Add note</h3>
+            <form action="' . $page . '" method="post">
+                <p><label>Title:</label> &nbsp; <input type="text" name="title"></p>
+                <p><label>Body:</label> &nbsp; <textarea name="body"></textarea></p>
+                <p><input type="submit" value="Add Note"/></p>
+                <input type="hidden" name="action" value="create">
+            </form>
         ';
     }
 
@@ -135,20 +133,18 @@
     // Show form for adding a record
     function edit_note_view($record) {
         $id    = $record['id'];
-        $name  = $record['name'];
-        $email = $record['email'];
+        $title  = $record['title'];
+        $body = $record['body'];
         global $page;
         return '
-            <div class="card">
-                <h3>Edit note</h3>
-                <form action="' . $page . '" method="post">
-                    <p><label>Title:</label> &nbsp; <input type="text" name="title" value="' . $name . '"></p>
-                    <p><label>Body:</label> &nbsp; <textarea name="body">' . $name . '</textarea></p>
-                    <p><input type="submit" value="Save Record"/></p>
-                    <input type="hidden" name="action" value="update">
-                    <input type="hidden" name="id" value="' . $id . '">
-                </form>
-            </div>
+            <h3>Edit note</h3>
+            <form action="' . $page . '" method="post">
+                <p><label>Title:</label> &nbsp; <input type="text" name="title" value="' . $title . '"></p>
+                <p><label>Body:</label> &nbsp; <textarea name="body">' . $body . '</textarea></p>
+                <p><input type="submit" value="Save Record"/></p>
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="id" value="' . $id . '">
+            </form>
         ';
     }
 
@@ -195,9 +191,7 @@
     // render_table -- Create a bullet list in HTML
     function note_list_view ($table) {
         global $page;
-        $s = '<div class="card">';
-//        $s .= render_button('Add note', "$page?action=add") . '<br><br>';
-        $s .= '<table>';
+        $s = '<table>';
         $s .= '<tr><th>Title</th><th>Body</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
@@ -206,7 +200,7 @@
             $row = array($edit, $title, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
-        $s .= '</table></div>';
+        $s .= '</table>';
         
         return $s;
     }
