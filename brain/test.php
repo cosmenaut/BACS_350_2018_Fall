@@ -15,11 +15,16 @@
 
     $notes = note_list_view(query_notes());
         
-    $content = 
-        render_card('Page Rendering', $text) .
-        render_card('Preformatted Text', $preform) .
-        render_card('Markdown', $markdown) . 
-        render_card('Notes', $notes);
+
+    // Assemble all the cards
+    $cards = array(
+        render_card('Page Rendering', $text),
+        render_card('Preformatted Text', $preform),
+        render_card('Markdown', $markdown),
+        render_card('Notes', $notes)
+    );
+    $content = implode('', $cards);
+        
 
 
     // Create main part of page content
