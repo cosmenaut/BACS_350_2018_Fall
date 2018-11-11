@@ -23,7 +23,7 @@
         render_card('Markdown', $markdown),
         render_card('Notes', $notes)
     );
-    $content = implode('', $cards);
+    $content = render_page_content($cards);
         
 
 

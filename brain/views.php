@@ -99,6 +99,14 @@
     }
 
 
+    // render_page_content -- Create page content from cards
+    function render_page_content($cards) {
+        $a = '<div class="page">';
+        $b = '</div>';
+        return $a . implode("$b$a", $cards) . $b;
+    }
+
+
     // render_markdown -- Convert markdown text to HTML
     function render_markdown($markdown) {
         $Parsedown = new Parsedown();
