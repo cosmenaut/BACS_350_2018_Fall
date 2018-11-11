@@ -17,9 +17,9 @@
         
         try {
             $title = filter_input(INPUT_POST, 'title');
-            $body = filter_input(INPUT_POST, 'body');
+            $body  = filter_input(INPUT_POST, 'body');
             date_default_timezone_set("America/Denver");
-            $date = date('Y-m-d g:is a');
+            $date  = date('Y-m-d g:i:s a');
             
             $query = "INSERT INTO notes (title, date, body) VALUES (:title, :date, :body);";
             
@@ -27,9 +27,11 @@
             
             global $db;
             $statement = $db->prepare($query);
+            
             $statement->bindValue(':title', $title);
             $statement->bindValue(':date', $date);
             $statement->bindValue(':body', $body);
+            
             $statement->execute();
             $statement->closeCursor();
             
@@ -89,10 +91,10 @@
         $title = filter_input(INPUT_POST, 'title');
         $body  = filter_input(INPUT_POST, 'body');
         date_default_timezone_set("America/Denver");
-        $date  = date('Y-m-d g:is a');
+        $date  = date('Y-m-d g:i:s a');
         
         // Modify database row
-        $query = "UPDATE notes SET title = :title, body = :body, date = :date WHERE id = :id";
+        $query = "UPDATE notes SET title=:title, body=:body, date=:date WHERE id = :id";
         global $db;       
         $statement = $db->prepare($query);
 
