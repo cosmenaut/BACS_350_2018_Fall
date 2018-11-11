@@ -74,3 +74,11 @@ pre {
     float: left;
     width: 40%;
 }
+
+.page {
+    background-color: #ffffee;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px gray;
+    width: 80%;
+    margin: 10%;
+}
