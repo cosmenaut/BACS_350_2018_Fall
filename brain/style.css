@@ -34,8 +34,6 @@ header h2 {
 header img {
     box-shadow: none;
     border-radius: 20px;
-    margin: 20px;
-    width: 100px;
     float: right;
 }
 
