@@ -6,10 +6,20 @@
     
 
     // Page content
+
+    $text = 'Experiment with page rendering, before proceeding to the next steps.';
+
+    $preform = '<pre> function render() { do_this(); }</pre>';
+
+    $markdown = render_markdown("* Bullet lists\n* Styles\n* Headings");
+
+    $notes = note_list_view(query_notes());
+        
     $content = 
-        render_card('Page Rendering', 'Experiment with page rendering, before proceeding to the next steps.') .
-        render_card('Preformatted Text', '<pre> function render() { do_this(); }</pre>') .
-        render_card('Markdown', render_markdown("* Bullet lists\n* Styles\n* Headings"));
+        render_card('Page Rendering', $text) .
+        render_card('Preformatted Text', $preform) .
+        render_card('Markdown', $markdown) . 
+        render_card('Notes', $notes);
 
 
     // Create main part of page content
