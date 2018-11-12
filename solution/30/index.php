@@ -14,17 +14,17 @@
     $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
 
-    // Try this login
 
-    $email = "me@here.com";
-    $password = 'Rock on dude!';
+    $content .= '
+    <h2>Public Page</h2>
+    <p>
+        This solution demonstrates the use of authentication code.
+        Visiting this page does not require a login.
 
-    // User Setup:
-    // require_once 'db.php';
-    // register_user($db, $email, $password, 'New', 'User');
-        
-    $content .= $auth->show_valid ($email, $password);
-
+        <a href="private.php">Private Page</a>
+    </p>
+    ';
+    
 
     // Create main part of page content
     $settings = array(
@@ -32,6 +32,7 @@
         "page_title" => "User Authentication", 
         "logo"       => "Bear.png",
         "style"      => 'style.css',
+        'user'       => user_info(),
         "content"    => $content);
 
     echo render_page($settings);
