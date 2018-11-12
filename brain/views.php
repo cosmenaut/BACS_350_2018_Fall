@@ -33,7 +33,7 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2>{{ title }}</h2>
+                    {{ title }}
                 </div>
 
                 <div class="card-body card-padding">

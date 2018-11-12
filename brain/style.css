@@ -74,6 +74,14 @@ pre {
     width: 45%;
 }
 
+.card-header {
+    background-color: #eeeeee;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px gray;
+    color: green;
+    padding: 20px;
+}
+
 .page {
     background-color: #ffffee;
     border: 1px solid black;
