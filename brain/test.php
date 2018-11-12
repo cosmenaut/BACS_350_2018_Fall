@@ -1,8 +1,9 @@
 <?php
 
-    require_once 'views.php'; 
+    require_once 'files.php'; 
     require_once 'log.php';
     require_once 'notes_data.php';
+    require_once 'views.php'; 
     
 
     // Page content
@@ -14,16 +15,18 @@
     $markdown = render_markdown("* Bullet lists\n* Styles\n* Headings");
 
     $notes = note_list_view(query_notes());
+
+    $source = read_file("page.html");
         
 
     // Assemble all the cards
-    $cards = array(
+    $content = render_page_content(array(
         render_card('Page Rendering', $text),
         render_card('Preformatted Text', $preform),
         render_card('Markdown', $markdown),
-        render_card('Notes', $notes)
-    );
-    $content = render_page_content($cards);
+        render_card('Notes', $notes),
+        render_card('Source Code', $source)
+    ));
         
 
 
