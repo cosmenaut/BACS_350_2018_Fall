@@ -7,7 +7,7 @@
     
 
     // Page content
-    $content = render_markdown_file('notes.md'). render_notes_view();
+    $content = render_markdown_file('notes.md') . render_card('Notes', render_notes_view());
     
 
     // Create main part of page content
