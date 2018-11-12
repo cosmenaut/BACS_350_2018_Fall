@@ -101,7 +101,7 @@
 
     // render_page_content -- Create page content from cards
     function render_page_content($cards) {
-        $a = '<div class="page">';
+        $a = '<div>';
         $b = '</div>';
         return $a . implode("$b$a", $cards) . $b;
     }

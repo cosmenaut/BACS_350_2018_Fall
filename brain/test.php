@@ -16,7 +16,7 @@
 
     $notes = note_list_view(query_notes());
 
-    $source = read_file("page.html");
+    $source = '<pre>' . read_file("page.html") . '</pre>';
         
 
     // Assemble all the cards
