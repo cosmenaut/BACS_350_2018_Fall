@@ -66,10 +66,10 @@ pre {
 */
 
 .card {
-    background-color: #eefeff;
+    background-color: white;
     border: 1px solid black;
     box-shadow: 2px 2px 5px gray;
-    padding: 20px;
+    padding: 0px;
     margin: 2.5%;
     width: 45%;
 }
@@ -87,9 +87,8 @@ pre {
 }
 
 .page {
-    background-color: #ffffee;
+    background-color: white;
     border: 1px solid black;
     box-shadow: 2px 2px 5px gray;
     width: 100%;
-/*    margin: 5%;*/
 }
