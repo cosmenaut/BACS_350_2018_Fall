@@ -45,6 +45,18 @@
     }  
 
 
+    // render_cards -- create HTML for visual card
+    function render_cards($cards) {
+        $a = '<div class="container-fluid"><div class="row">';
+        $b = '</div></div>';
+        $content = array();
+        foreach($cards as $title => $body) {
+            $content[$title] = render_card($title, $body);
+        }
+        return $a . render_page_content($content) . $b;
+    }
+
+        
     // render_csv  -- Create csv text output
     function render_csv($list) {
         $s = '';

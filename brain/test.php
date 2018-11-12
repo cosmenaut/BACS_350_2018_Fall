@@ -10,22 +10,22 @@
 
     $text = 'Experiment with page rendering, before proceeding to the next steps.';
 
-    $preform = '<pre> function render() { do_this(); }</pre>';
+    $preform = 'render() <pre> function render() { do_this(); }</pre>';
 
-    $markdown = render_markdown("* Bullet lists\n* Styles\n* Headings");
+    $markdown = render_markdown("* Bullet lists\n* Styles\n* Headings\n* [Hyperlinks](index.php)");
 
     $notes = note_list_view(query_notes());
 
-    $source = '<pre>' . read_file("page.html") . '</pre>';
+    $source = 'page.html <pre>' . read_file("page.html") . '</pre>';
         
 
     // Assemble all the cards
-    $content = render_page_content(array(
-        render_card('Page Rendering', $text),
-        render_card('Preformatted Text', $preform),
-        render_card('Markdown', $markdown),
-        render_card('Notes', $notes),
-        render_card('Source Code', $source)
+    $content = render_cards(array(
+        'Page Rendering' => $text,
+        'Preformatted Text' => $preform,
+        'Markdown' => $markdown,
+        'Notes' => $notes,
+        'Source Code' => $source
     ));
         
 

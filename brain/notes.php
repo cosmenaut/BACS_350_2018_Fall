@@ -5,11 +5,13 @@
     require_once 'files.php';
     require_once 'notes_data.php';
     
-
-    // Page content
-    $content = render_markdown_file('notes.md') . render_card('Notes', render_notes_view());
     
+    // Page content
 
+    $notes =  render_notes_view();
+
+    $content = render_markdown_file('notes.md') . $notes;
+    
     // Create main part of page content
     $settings = array(
         "site_title" => "Exterior Brain",
