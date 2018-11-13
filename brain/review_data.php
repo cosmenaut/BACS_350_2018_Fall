@@ -13,29 +13,39 @@
 
     // Add a new record
     function add_review() {
+        
+        $page       = filter_input(INPUT_POST, 'page');
+        $reviewer   = filter_input(INPUT_POST, 'reviewer');
+        $designer   = filter_input(INPUT_POST, 'designer');
+        $scorecard  = filter_input(INPUT_POST, 'scorecard');
+        $score      = filter_input(INPUT_POST, 'score');
+        date_default_timezone_set("America/Denver");
+        $date       = date('Y-m-d g:i a');
+        
         global $log;
+        global $db;
+        global $page;
         
         try {
-            $title = filter_input(INPUT_POST, 'title');
-            $body  = filter_input(INPUT_POST, 'body');
-            date_default_timezone_set("America/Denver");
-            $date  = date('Y-m-d g:i:s a');
+            $query = "INSERT INTO reviews 
+                    (page, reviewer, designer, date, scorecard, score) 
+                VALUES 
+                    (:page, :reviewer, :designer, :date, :scorecard, :score);";
             
-            $query = "INSERT INTO reviews (title, date, body) VALUES (:title, :date, :body);";
+            $log->log("Add Record: $date, $page, $reviewer, $designer, $score");
             
-            $log->log("Add Record: $date, $title, $body");
-            
-            global $db;
             $statement = $db->prepare($query);
             
-            $statement->bindValue(':title', $title);
-            $statement->bindValue(':date', $date);
-            $statement->bindValue(':body', $body);
+            $statement->bindValue(':page',      $page);
+            $statement->bindValue(':reviewer',  $reviewer);
+            $statement->bindValue(':designer',  $designer);
+            $statement->bindValue(':date',      $date);
+            $statement->bindValue(':scorecard', $scorecard);
+            $statement->bindValue(':score',     $score);
             
             $statement->execute();
             $statement->closeCursor();
             
-            global $page;
             header("Location: $page");
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
@@ -47,17 +57,19 @@
 
     // Delete Database Record
     function delete_review($id) {
+        global $db;
+        global $page;
+        
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
+        
         if ($action == 'delete' and !empty($id)) {
             $query = "DELETE from reviews WHERE id = :id";
-            global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
             $statement->execute();
             $statement->closeCursor();
         }
-        global $page;
         header("Location: $page");
     }
     
@@ -87,27 +99,44 @@
 
     // Update the database
     function update_review () {
-        $id    = filter_input(INPUT_POST, 'id');
-        $title = filter_input(INPUT_POST, 'title');
-        $body  = filter_input(INPUT_POST, 'body');
+        $id         = filter_input(INPUT_POST, 'id');
+        $page       = filter_input(INPUT_POST, 'page');
+        $reviewer   = filter_input(INPUT_POST, 'reviewer');
+        $designer   = filter_input(INPUT_POST, 'designer');
+        $scorecard  = filter_input(INPUT_POST, 'scorecard');
+        $score      = filter_input(INPUT_POST, 'score');
         date_default_timezone_set("America/Denver");
-        $date  = date('Y-m-d g:i:s a');
+        $date       = date('Y-m-d g:i a');
         
-        // Modify database row
-        $query = "UPDATE reviews SET title=:title, body=:body, date=:date WHERE id = :id";
+        global $log;
         global $db;       
-        $statement = $db->prepare($query);
-
-        $statement->bindValue(':id', $id);
-        $statement->bindValue(':title', $title);
-        $statement->bindValue(':body', $body);
-        $statement->bindValue(':date', $date);
-
-        $statement->execute();
-        $statement->closeCursor();
-        
         global $page;
-        header("Location: $page");
+        
+        try {
+            // Modify database row
+            $query = "UPDATE reviews SET 
+                page=:page, reviewer=:reviewer, designer=:designer, date=:date, scorecard=:scorecard, score=:score 
+                WHERE id = :id";
+            
+            $statement = $db->prepare($query);
+
+            $statement->bindValue(':id',        $id);
+            $statement->bindValue(':page',      $page);
+            $statement->bindValue(':reviewer',  $reviewer);
+            $statement->bindValue(':designer',  $designer);
+            $statement->bindValue(':date',      $date);
+            $statement->bindValue(':scorecard', $scorecard);
+            $statement->bindValue(':score',     $score);
+
+            $statement->execute();
+            $statement->closeCursor();
+
+            header("Location: $page");
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            $log->log("**Error**: $error_message **");
+            die();
+        }
     }
 
 
@@ -121,8 +150,8 @@
         return '
             <h3>Add review</h3>
             <form action="' . $page . '" method="post">
-                <p><label>Title:</label> &nbsp; <input type="text" name="title"></p>
-                <p><label>Body:</label> &nbsp; <textarea name="body"></textarea></p>
+                <p><label>page:</label> &nbsp; <input type="text" name="page"></p>
+                <p><label>scorecard:</label> &nbsp; <textarea name="scorecard"></textarea></p>
                 <p><input type="submit" value="Add review"/></p>
                 <input type="hidden" name="action" value="create">
             </form>
@@ -133,14 +162,14 @@
     // Show form for adding a record
     function edit_review_view($record) {
         $id    = $record['id'];
-        $title  = $record['title'];
-        $body = $record['body'];
+        $page  = $record['page'];
+        $scorecard = $record['scorecard'];
         global $page;
         return '
             <h3>Edit review</h3>
             <form action="' . $page . '" method="post">
-                <p><label>Title:</label> &nbsp; <input type="text" name="title" value="' . $title . '"></p>
-                <p><label>Body:</label> &nbsp; <textarea name="body">' . $body . '</textarea></p>
+                <p><label>page:</label> &nbsp; <input type="text" name="page" value="' . $page . '"></p>
+                <p><label>scorecard:</label> &nbsp; <textarea name="scorecard">' . $scorecard . '</textarea></p>
                 <p><input type="submit" value="Save Record"/></p>
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="id" value="' . $id . '">
@@ -192,12 +221,12 @@
     function review_list_view ($table) {
         global $page;
         $s = '<table>';
-        $s .= '<tr><th>Title</th><th>Body</th></tr>';
+        $s .= '<tr><th>page</th><th>scorecard</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
-            $title = $row[2];
+            $page = $row[2];
             $delete = render_link("delete", "$page?id=$row[0]&action=delete");
-            $row = array($edit, $title, $delete);
+            $row = array($edit, $page, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
