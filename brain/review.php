@@ -8,7 +8,7 @@
     
     // Page content
 
-    $notes =  render_notes_view();
+    $notes =  render_reviews_view();
 
     $content = render_markdown_file('notes.md') . $notes;
     
