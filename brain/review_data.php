@@ -240,7 +240,7 @@
         global $page;
         $s = '<table>';
         $header = array('id', 'date', 'page', 'review', 'edit', 'delete');
-        $s .= '<tr><th>' . implode('</th><th>', $row) . '</th></tr>';
+        $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
         foreach($table as $row) {
             $id = $row['id'];
             $url = render_link($row['page'], "$page?id=$row[id]&action=view");
