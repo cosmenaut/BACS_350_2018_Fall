@@ -227,6 +227,10 @@
             $log->log('review Edit View');
             return edit_review_view(get_review($id));
         }
+        if ($action == 'view' and ! empty($id)) {
+            $log->log('review Details View');               // READ
+            return edit_review_view(get_review($id));
+        }
     }
 
 
@@ -234,15 +238,17 @@
     function review_list_view ($table) {
         global $page;
         $s = '<table>';
-        $s .= '<tr><th>page</th><th>scorecard</th></tr>';
+        $header = array('id', 'date', 'page', 'review', 'edit', 'delete');
+        $s .= '<tr><th>' . implode('</th><th>', $row) . '</th></tr>';
         foreach($table as $row) {
-            $id = $row[0];
-            $url = render_link($row[2], "$page?id=$row[0]&action=view");
-            $date = $row[1];
-            $edit = render_link($row[2], "$page?id=$row[0]&action=edit");
-            $reviewer = $row[3];
+            $id = $row['id'];
+            $url = render_link($row['page'], "$page?id=$row[id]&action=view");
+            $date = $row['date'];
+            $reviewer = $row['reviewer'];
+            $score = $row['score'];
+            $edit = render_link('edit', "$page?id=$row[id]&action=edit");
             $delete = render_link("delete", "$page?id=$row[0]&action=delete");
-            $row = array($id, $date, $url, $edit, $reviewer, $delete);
+            $row = array($id, $date, $url, $reviewer, $score, $edit,  $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
