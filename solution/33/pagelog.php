@@ -1,15 +1,14 @@
 <?php
 
     require_once 'views.php';
- 
-    // Handle any page actions required
     require_once 'log.php';
 
-    // Show buttons to go to other pages
-    $content = render_button('Templates', 'index.php');
-    $content .= render_button('Solutions', '../solution');
-    $content .= render_button('Show Log', 'pagelog.php');
 
+    // Show buttons to go to other pages
+    $content = render_button('Brain', 'index.php');
+
+    
+    // Page Content
     $log->handle_actions();
     $log->log_page();
 
@@ -24,10 +23,10 @@
 
     // Show Page
     $settings = array(
-        "site_title" => "BACS 350 Templates",
-        "page_title" => "Display Pages loaded", 
+        "site_title" => "Brain",
+        "page_title" => "Page Loading History", 
         'logo'       => 'Bear.png',
-        "style"      => 'style.css',
+        "style"      => 'https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);
