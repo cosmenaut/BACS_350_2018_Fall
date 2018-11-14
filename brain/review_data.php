@@ -151,7 +151,10 @@
             <h3>Add review</h3>
             <form action="' . $page . '" method="post">
                 <p><label>page:</label> &nbsp; <input type="text" name="page"></p>
+                <p><label>designer:</label> &nbsp; <input type="text" name="designer"></p>
+                <p><label>reviewer:</label> &nbsp; <input type="text" name="reviewer"></p>
                 <p><label>scorecard:</label> &nbsp; <textarea name="scorecard"></textarea></p>
+                <p><label>score:</label> &nbsp; <input type="int" name="score"></p>
                 <p><input type="submit" value="Add review"/></p>
                 <input type="hidden" name="action" value="create">
             </form>
@@ -161,15 +164,25 @@
 
     // Show form for adding a record
     function edit_review_view($record) {
-        $id    = $record['id'];
-        $page  = $record['page'];
-        $scorecard = $record['scorecard'];
+        
+        $id         = $record['id'];
+        $page       = $record['page'];
+        $reviewer   = $record['reviewer'];
+        $designer   = $record['designer'];
+        $scorecard  = $record['scorecard'];
+        $score      = $record['score'];
+        
         global $page;
         return '
             <h3>Edit review</h3>
             <form action="' . $page . '" method="post">
+            
                 <p><label>page:</label> &nbsp; <input type="text" name="page" value="' . $page . '"></p>
+                <p><label>designer:</label> &nbsp; <input type="text" name="designer" value="' . $designer . '"></p>
+                <p><label>reviewer:</label> &nbsp; <input type="text" name="reviewer" value="' . $reviewer . '"></p>
                 <p><label>scorecard:</label> &nbsp; <textarea name="scorecard">' . $scorecard . '</textarea></p>
+                <p><label>score:</label> &nbsp; <input type="int" name="score" value="' . $score . '"></p>
+                
                 <p><input type="submit" value="Save Record"/></p>
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="id" value="' . $id . '">
