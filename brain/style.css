@@ -67,6 +67,11 @@ textarea {
     height: 400px;
 }
 
+td {
+/*    margin-right: 50px;*/
+    padding-right: 50px;
+}
+
 
 /*
     C L A S S E S
