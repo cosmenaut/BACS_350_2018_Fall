@@ -1,4 +1,6 @@
 <?php
+    require_once 'Parsedown.php';
+
 
     // article_settings -- Create the HTML page for one article.
     function article_settings($title, $body, $author) {
@@ -21,7 +23,7 @@
 
     // render_button -- Show a styled button
     function render_button($text, $url) {
-        return '<button class="btn">' . render_link($text, $url) . '</button>';
+        return "<button class=\"btn btn-primary btn-large m-20\" href=\"$url\">$text</button>";
     }
 
 
@@ -31,7 +33,7 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2>{{ title }}</h2>
+                    {{ title }}
                 </div>
 
                 <div class="card-body card-padding">
@@ -43,6 +45,18 @@
     }  
 
 
+    // render_cards -- create HTML for visual card
+    function render_cards($cards) {
+        $a = '<div class="container-fluid"><div class="row">';
+        $b = '</div></div>';
+        $content = array();
+        foreach($cards as $title => $body) {
+            $content[$title] = render_card($title, $body);
+        }
+        return $a . render_page_content($content) . $b;
+    }
+
+        
     // render_csv  -- Create csv text output
     function render_csv($list) {
         $s = '';
@@ -94,6 +108,27 @@
         header("Expires: 0");
         header("Cache-Control: no-store, no-cache, must-revalidate");
         return render_template("page.html", $settings);
+    }
+
+
+    // render_page_content -- Create page content from cards
+    function render_page_content($cards) {
+        $a = '';
+        $b = '';
+        return $a . implode("$b$a", $cards) . $b;
+    }
+
+
+    // render_markdown -- Convert markdown text to HTML
+    function render_markdown($markdown) {
+        $Parsedown = new Parsedown();
+        return $Parsedown->text($markdown);
+    }
+
+
+    // render_markdown_file -- Convert a file to HTML
+    function render_markdown_file($path) {
+        return render_markdown(read_file($path));
     }
 
 

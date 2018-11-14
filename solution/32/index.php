@@ -7,14 +7,17 @@
     require_once 'Parsedown.php';
     
 
-    // Markdown Text
-    $markdown = read_file('brain.md');
-
-
     // Convert the Markdown into HTML
     $Parsedown = new Parsedown();
-    $content = $Parsedown->text($markdown);
+    $markdown = read_file('brain.md');
+    $markdown = $Parsedown->text($markdown);
     
+    // Display the page content
+    $content = render_button('Templates', '../../templates');
+    $content .= render_button('Solutions', '..');
+    $content .= render_button('Show Log', 'pagelog.php');
+    $content .= $markdown;
+
 
     // Create main part of page content
     $settings = array(
