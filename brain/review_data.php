@@ -236,10 +236,13 @@
         $s = '<table>';
         $s .= '<tr><th>page</th><th>scorecard</th></tr>';
         foreach($table as $row) {
-            $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
-            $page = $row[2];
+            $id = $row[0];
+            $url = render_link($row[2], "$page?id=$row[0]&action=view");
+            $date = $row[1];
+            $edit = render_link($row[2], "$page?id=$row[0]&action=edit");
+            $reviewer = $row[3];
             $delete = render_link("delete", "$page?id=$row[0]&action=delete");
-            $row = array($edit, $page, $delete);
+            $row = array($id, $date, $url, $edit, $reviewer, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
