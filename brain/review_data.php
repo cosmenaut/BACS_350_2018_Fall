@@ -213,7 +213,8 @@
         $action = filter_input(INPUT_GET, 'action');
         if (empty($action)) {                                  
             $log->log('review READ');                      // READ
-            return review_list_view(query_reviews());
+            $intro =  render_markdown_file('reviews.md');
+            return $intro . review_list_view(query_reviews());
         }
         if ($action == 'add') {
             $log->log('review Add View');

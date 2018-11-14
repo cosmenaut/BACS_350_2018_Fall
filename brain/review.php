@@ -8,9 +8,7 @@
     
     // Page content
 
-    $notes =  render_reviews_view();
-
-    $content = render_markdown_file('reviews.md') . $notes;
+    $content = render_reviews_view();
     
     // Create main part of page content
     $settings = array(
