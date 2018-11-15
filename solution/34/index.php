@@ -16,14 +16,14 @@
 
     $source = 'Markdown <pre>' . read_file("slides.md") . '</pre>';
         
-    $pagelog = $log->show_log();
-        
-        
+    $slides = render_link('slides.html', 'slides.html');
+
     // Assemble all the cards
     $content = render_cards(array(
         'Create Slide Show' => $text,
         'HTML View' => $markdown,
         'Markdown' => $source,
+        'Slide Show' => $slides,
     ));
         
 
