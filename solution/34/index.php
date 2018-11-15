@@ -16,7 +16,7 @@
 
     $source = '<pre>' . read_file("slides.md") . '</pre>';
         
-    $slides = render_link('slides.html', 'slides.html');
+    $slides = render_link('slides.php', 'slides.php');
 
     $template = read_file("slides.php");
     $template = "<div><h2>Code for Slides</h2><pre>$template</pre></div>";
