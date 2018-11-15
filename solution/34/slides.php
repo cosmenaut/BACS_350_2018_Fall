@@ -12,11 +12,7 @@
             <div class="slides">
                 <section data-markdown
                          data-separator="\n---\n" data-separator-vertical="\n--\n">
-                    <textarea data-template>
-                        
-                       <?php include 'slides.md'; ?>
-                        
-                    </textarea>
+                    <textarea data-template><?php include 'slides.md'; ?></textarea>
                 </section>
             </div>
         </div>
