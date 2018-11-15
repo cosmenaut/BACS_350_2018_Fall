@@ -8,7 +8,7 @@
 
     // Page content
 
-    $content = read_file("slides.md")
+    $content = read_file("slides.md");
         
 
     // Create main part of page content
