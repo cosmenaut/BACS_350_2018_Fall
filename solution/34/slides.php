@@ -1,22 +1,29 @@
-<?php
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+        <link rel="stylesheet" href="https://revealjs.com/css/theme/white.css">
+        <link rel="stylesheet" href="https://revealjs.com/lib/css/zenburn.css"/>
+        <link rel="stylesheet" href="slides.css">
+    </head>
+    <body>
 
-    require_once 'files.php'; 
-    require_once 'log.php';
-//    require_once 'notes_data.php';
-    require_once 'views.php'; 
-    
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                         data-separator="\n---\n" data-separator-vertical="\n--\n">
+                    <textarea data-template>
+                        
+                       <?php {{ content }} ?>
+                        
+                    </textarea>
+                </section>
+            </div>
+        </div>
 
-    // Page content
+        <script src="https://revealjs.com/lib/js/head.min.js"></script>
+        <script src="https://revealjs.com/js/reveal.js"></script>
+        <script src="slides.js"></script>
 
-    $content = 'read_file("slides.md")';
-        
-
-    // Create main part of page content
-    $settings = array(
-        "site_title" => "BACS 350 Demo Server",
-        "page_title" => "Slide Show Display", 
-        "content"    => $content);
-
-    echo render_template('slides.html', $settings);
-
-?>
+    </body>
+</html>
