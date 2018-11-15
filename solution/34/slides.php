@@ -14,7 +14,7 @@
                          data-separator="\n---\n" data-separator-vertical="\n--\n">
                     <textarea data-template>
                         
-                       <?php {{ content }} ?>
+                       <?php include 'slides.md'; ?>
                         
                     </textarea>
                 </section>
