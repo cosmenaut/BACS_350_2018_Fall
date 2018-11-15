@@ -8,5 +8,4 @@ This exterior brain is a tool that allows you to be what you are good at while t
 * [Notes App](notes.php)
 * [Page Log](pagelog.php)
 * [Test](test.php)
-* [Design Reviews](review.php)
 

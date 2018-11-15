@@ -4,27 +4,22 @@
     require_once 'db.php';
     require_once 'log.php';
 
+    $page = 'email_list.php';
+
 
     // Add a new record
     function add_subscriber($db) {
         try {
-            $artist  = filter_input(INPUT_POST, 'artist');
-            $name = filter_input(INPUT_POST, 'name');
-            $artwork  = filter_input(INPUT_POST, 'artwork');
-            $purchase = filter_input(INPUT_POST, 'purchase');
-            $description  = filter_input(INPUT_POST, 'description');
-            $review = filter_input(INPUT_POST, 'review');
-            $query = "INSERT INTO music (artist, name, artwork, purchase, description, review) VALUES (:artist, :name, :artwork,:purchase, :description, :review);";
+            $name  = filter_input(INPUT_POST, 'name');
+            $email = filter_input(INPUT_POST, 'email');
+            $query = "INSERT INTO subscribers (name, email) VALUES (:name, :email);";
             $statement = $db->prepare($query);
-            $statement->bindValue(':artist', $artist);
             $statement->bindValue(':name', $name);
-            $statement->bindValue(':artwork', $artwork);
-            $statement->bindValue(':purchase', $purchase);
-            $statement->bindValue(':description', $description);
-            $statement->bindValue(':review', $review);
+            $statement->bindValue(':email', $email);
             $statement->execute();
             $statement->closeCursor();
-            header('Location: index.php');
+            global $page;
+            header("Location: $page");
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Error: $error_message</p>";
@@ -34,17 +29,14 @@
 
     // Show form for adding a record
     function add_subscriber_view() {
+        global $page;
         return '
             <div class="card">
-                <h3>Add Album</h3>
-                <form action="index.php" method="post">
-                    <p><label>artist:</label> &nbsp; <input type="text" name="artist"></p>
-                    <p><label>name:</label> &nbsp; <input type="text" name="name"></p>
-                    <p><label>artwork:</label> &nbsp; <input type="text" name="artwork"></p>
-                    <p><label>purchase link:</label> &nbsp; <input type="text" name="purchase"></p>
-                    <p><label>description:</label> &nbsp; <input type="text" name="description"></p>
-                    <p><label>review:</label> &nbsp; <input type="text" name="review"></p>
-                    <p><input type="submit" value="Add Album"/></p>
+                <h3>Add Subscriber</h3>
+                <form action="' . $page . '" method="post">
+                    <p><label>Name:</label> &nbsp; <input type="text" name="name"></p>
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <p><input type="submit" value="Sign Up"/></p>
                     <input type="hidden" name="action" value="create">
                 </form>
             </div>
@@ -57,37 +49,29 @@
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
         if ($action == 'delete' and !empty($id)) {
-            $query = "DELETE from music WHERE id = :id";
+            $query = "DELETE from subscribers WHERE id = :id";
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
             $statement->execute();
             $statement->closeCursor();
         }
-        header('Location: index.php');
+        global $page;
+        header("Location: $page");
     }
     
 
     // Show form for adding a record
     function edit_subscriber_view($record) {
         $id    = $record['id'];
-        $artist  = $record['artist'];
-        $name = $record['name'];
-        $artwork  = $record['artwork'];
-        $purchase = $record['purchase'];
-        $description  = $record['description'];
-        $review = $record['review'];
+        $name  = $record['name'];
+        $email = $record['email'];
+        global $page;
         return '
             <div class="card">
-                <h3>Edit Album</h3>
-                <form action="index.php" method="post">
-                
-                    <p><label>artist:</label> &nbsp; <input type="text" name="artist" value="' . $artist . '"></p>
-                    <p><label>name:</label> &nbsp; <input type="text" name="name" value="' . $name . '"></p>
-                    <p><label>artwork:</label> &nbsp; <input type="text" name="artwork" value="' . $artwork . '"></p>
-                    <p><label>purchase link:</label> &nbsp; <input type="text" name="purchase" value="' . $purchase . '"></p>
-                    <p><label>description:</label> &nbsp; <input type="text" name="description" value="' . $description . '"></p>
-                    <p><label>review:</label> &nbsp; <input type="text" name="review" value="' . $review . '"></p>
-
+                <h3>Edit Subscriber</h3>
+                <form action="' . $page . '" method="post">
+                    <p><label>Name:</label> &nbsp; <input type="text" name="name" value="' . $name . '"></p>
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email" value="' . $email . '"></p>
                     <p><input type="submit" value="Save Record"/></p>
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="id" value="' . $id . '">
@@ -99,7 +83,7 @@
 
     // Lookup Record using ID
     function get_subscriber($db, $id) {
-        $query = "SELECT * FROM music WHERE id = :id";
+        $query = "SELECT * FROM subscribers WHERE id = :id";
         $statement = $db->prepare($query);
         $statement->bindValue(':id', $id);
         $statement->execute();
@@ -118,34 +102,34 @@
         // POST
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'create') {    
-            $log->log('music CREATE');                    // CREATE
+            $log->log('Subscriber CREATE');                    // CREATE
             $subscribers->add();
         }
         if ($action == 'update') {
-            $log->log('music UPDATE');                    // UPDATE
+            $log->log('Subscriber UPDATE');                    // UPDATE
             $subscribers->update();
         }
 
         // GET
         $action = filter_input(INPUT_GET, 'action');
         if (empty($action)) {                                  
-            $log->log('music READ');                      // READ
+            $log->log('Subscriber READ');                      // READ
             return $subscribers->list_view();
         }
        if ($action == 'add') {
-            $log->log('music Add View');
+            $log->log('Subscriber Add View');
             return $subscribers->add_view();
         }
         if ($action == 'clear') {
-            $log->log('music DELETE ALL');
+            $log->log('Subscriber DELETE ALL');
             return $subscribers->clear();
         }
         if ($action == 'delete') {
-            $log->log('music DELETE');                    // DELETE
+            $log->log('Subscriber DELETE');                    // DELETE
             return $subscribers->delete($id);
         }
         if ($action == 'edit' and ! empty($id)) {
-            $log->log('music Edit View');
+            $log->log('Subscriber Edit View');
             return $subscribers->edit_view($id);
         }
     }
@@ -153,7 +137,7 @@
 
     // Query for all subscribers
     function query_subscribers ($db) {
-        $query = "SELECT * FROM music";
+        $query = "SELECT * FROM subscribers";
         $statement = $db->prepare($query);
         $statement->execute();
         return $statement->fetchAll();
@@ -162,18 +146,15 @@
 
     // render_table -- Create a bullet list in HTML
     function subscriber_list_view ($table) {
-        $s = render_button('Add music', 'index.php?action=add') . '<br><br>';
+        global $page;
+        $s = render_button('Add Subscriber', "$page?action=add") . '<br><br>';
         $s .= '<table>';
-        $s .= '<tr><th>Name</th><th>Album</th><th>Artwork</th></tr>';
+        $s .= '<tr><th>Name</th><th>Email</th></tr>';
         foreach($table as $row) {
-            $edit = render_link($row[1], "index.php?id=$row[0]&action=edit");
-            $name = $row[2];
-            $imgpart = "<img src='".$row['3']."' style='width:200px; height:200px'>";
-            $artwork = $imgpart;
-            $buy = $row[4];
-            $purchase = render_link("purchase",$buy);
-            $delete = render_link("delete", "index.php?id=$row[0]&action=delete");
-            $row = array($edit, $name, $artwork, $purchase, $delete);
+            $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
+            $email = $row[2];
+            $delete = render_link("delete", "$page?id=$row[0]&action=delete");
+            $row = array($edit, $email, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
@@ -185,21 +166,22 @@
     // Update the database
     function update_subscriber ($db) {
         $id    = filter_input(INPUT_POST, 'id');
-        $artist  = filter_input(INPUT_POST, 'artist');
-        $name = filter_input(INPUT_POST, 'name');
+        $name  = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'email');
         
         // Modify database row
-        $query = "UPDATE music SET artist = :artist, nam = :name WHERE id = :id";
+        $query = "UPDATE subscribers SET name = :name, email = :email WHERE id = :id";
         $statement = $db->prepare($query);
 
         $statement->bindValue(':id', $id);
-        $statement->bindValue(':artist', $artist);
         $statement->bindValue(':name', $name);
+        $statement->bindValue(':email', $email);
 
         $statement->execute();
         $statement->closeCursor();
         
-        header('Location: index.php');
+        global $page;
+        header("Location: $page");
     }
  
 
