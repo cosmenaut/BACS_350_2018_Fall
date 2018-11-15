@@ -18,7 +18,7 @@
         
     $slides = render_link('slides.html', 'slides.html');
 
-    $template = read_file("slides.php")
+    $template = read_file("slides.php");
 
     // Assemble all the cards
     $content = render_cards(array(
