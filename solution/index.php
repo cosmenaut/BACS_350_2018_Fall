@@ -122,6 +122,9 @@
              <li>
                 <a href="33">33. Test App </a> -  App demos for testing
             </li>
+            <li>
+                <a href="34">34. Slide Show </a> -  Show slides from Markdown
+            </li>
         </ul>
     ';
 
