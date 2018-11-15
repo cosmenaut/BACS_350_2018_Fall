@@ -18,15 +18,16 @@
         
     $slides = render_link('slides.html', 'slides.html');
 
+    $template = read_file("slides.php")
+
     // Assemble all the cards
     $content = render_cards(array(
         'Create Slide Show' => $text,
+        'Slide Show' => $slides,
         'HTML View' => $markdown,
         'Markdown' => $source,
-        'Slide Show' => $slides,
-    ));
+    )) . "<div>$template</div>";
         
-
 
     // Create main part of page content
     $settings = array(
