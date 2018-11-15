@@ -58,6 +58,12 @@ td {
     padding-right: 30px;
 }
 
+textarea {
+    width: 80%;
+    max-width: 600px;
+    height: 400px;
+}
+
 
 /*
     C L A S S E S
