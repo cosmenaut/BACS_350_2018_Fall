@@ -8,35 +8,30 @@
 
     // Page content
 
-    $text = 'Experiment with page rendering, before proceeding to the next steps.';
+    $text = 'Display slide shows';
 
-    $preform = 'render() <pre> function render() { do_this(); }</pre>';
+    $markdown = render_markdown_file("slides.md");
 
-    $markdown = render_markdown("* Bullet lists\n* Styles\n* Headings\n* [Hyperlinks](index.php)");
+//    $notes = note_list_view(query_notes());
 
-    $notes = note_list_view(query_notes());
-
-    $source = 'page.html <pre>' . read_file("page.html") . '</pre>';
+    $source = 'Markdown <pre>' . read_file("slides.md") . '</pre>';
         
     $pagelog = $log->show_log();
         
         
     // Assemble all the cards
     $content = render_cards(array(
-        'Page Rendering' => $text,
-        'Preformatted Text' => $preform,
-        'Markdown' => $markdown,
-        'Notes' => $notes,
-        'Source Code' => $source,
-        'System Log' => $pagelog,
+        'Create Slide Show' => $text,
+        'HTML View' => $markdown,
+        'Markdown' => $source,
     ));
         
 
 
     // Create main part of page content
     $settings = array(
-        "site_title" => "BACS Demo Server",
-        "page_title" => "Test of Dev Features", 
+        "site_title" => "BACS 350 Demo Server",
+        "page_title" => "Slide Show Display", 
         "content"    => $content);
 
     echo render_page($settings);
