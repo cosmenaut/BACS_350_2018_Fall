@@ -14,7 +14,7 @@
 
 //    $notes = note_list_view(query_notes());
 
-    $source = 'Markdown <pre>' . read_file("slides.md") . '</pre>';
+    $source = '<pre>' . read_file("slides.md") . '</pre>';
         
     $slides = render_link('slides.html', 'slides.html');
 
@@ -27,7 +27,7 @@
         'Slide Show' => $slides,
         'HTML View' => $markdown,
         'Markdown' => $source,
-    )) . $template;
+    )) . $template ;
         
 
     // Create main part of page content
