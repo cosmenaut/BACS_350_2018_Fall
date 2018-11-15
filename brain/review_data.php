@@ -239,7 +239,7 @@
     function review_list_view ($table) {
         global $page;
         $s = '<table>';
-        $header = array('id', 'date', 'page', 'review', 'edit', 'delete');
+        $header = array('id', 'date', 'page', 'review', 'score', 'edit', 'delete');
         $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
         foreach($table as $row) {
             $id = $row['id'];
