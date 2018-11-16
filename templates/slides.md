@@ -4,12 +4,11 @@ Building Your App
 * Friday, Nov 16, 2018
 * by Mark Seaman
 
-![](Bear_Logo.png)
-
+![](Bear.png)
 
 --
 
-#### Development Process
+## Development Process
 * Create a page for the app
 * Customize general code to create new datatype
 * Debug one feature at a time
@@ -18,7 +17,7 @@ Building Your App
 
 --
 
-#### Data
+## Data
 Review:
 
 * date - date of last update
@@ -27,7 +26,7 @@ Review:
 
 --
 
-#### Views
+## Views
 * List
 * Details
 * Add
@@ -36,7 +35,7 @@ Review:
 
 --
 
-#### Code structure
+## Code structure
 * CRUD functions
 * View render functions
 * Controller that manages views
@@ -47,13 +46,15 @@ Review:
 
 ---
 
-#### Testing
+![](Bear.png)
+
+# Testing
 * Try each feature interactively
 * Code a page with links for testing
 
 --
 
-#### Design Reviews
+## Design Reviews
 * Published and share code
 * Gather feedback from Design Reviews
 * Fix issues that are found
