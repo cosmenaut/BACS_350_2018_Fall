@@ -1,9 +1,22 @@
 <?php
 
+/*
+    General database connection.  This design works for either local or remote
+    database connections.  It automatically determines which is needed at 
+    execution time.
+    
+    Usage:
+        require_once 'db.php';
+        $db = subscribers_connect();
+        
+*/
+
+
     // Connect to the remote database
     function remote_connect() {
+
         $port = '3306';
-        $dbname = 'sbkacbmy_subscribers';
+        $dbname = 'sbkacbmy_music';
         $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
         $username = 'sbkacbmy_cmart';
         $password = 'BACS_350';
@@ -15,7 +28,7 @@
     function local_connect() {
 
         $host = 'localhost';
-        $dbname = 'subscribers';
+        $dbname = 'music';
         $username = 'root';
         $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";

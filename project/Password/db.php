@@ -2,14 +2,12 @@
 
     // Connect to the remote database
     function remote_connect() {
-
         $port = '3306';
-        $dbname = 'uncobacs_350';
+        $dbname = 'sbkacbmy_subscribers';
         $db_connect = "mysql:host=localhost:$port;dbname=$dbname";
-        $username = 'uncobacs_350';
+        $username = 'sbkacbmy_cmart';
         $password = 'BACS_350';
         return db_connect($db_connect, $username, $password);
-
     }
 
 
@@ -29,10 +27,11 @@
     // Open the database or die
     function db_connect($db_connect, $username, $password) {
         
-//        echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
+        // Enable these echo statements to debug the connection.
+        //  echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
         try {
             $db = new PDO($db_connect, $username, $password);
-//             echo '<p><b>Successful Connection</b></p>';
+            // echo '<p><b>Successful Connection</b></p>';
             return $db;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
@@ -44,7 +43,7 @@
 
 
     // Open the database or die
-    function log_connect() {
+    function connect_database() {
         
         $local = ($_SERVER['SERVER_NAME'] == 'localhost');
         if ($local) {
@@ -56,5 +55,8 @@
         
     }
 
+    // Create a connection
+
+    $db = connect_database();
 
 ?>

@@ -1,15 +1,15 @@
 <?php
 
     require_once 'views.php';
-    require_once 'db.php';    
-    require_once 'log.php';
+//    require_once 'db.php';    
+//    require_once 'log.php';
     require_once 'files.php';
 
     require_once 'Parsedown.php';
     
 
     // Markdown Text
-    $markdown = read_file('markdown.md');
+    $markdown = read_file('reviews.md');
 
 
     // Convert the Markdown into HTML
@@ -17,13 +17,12 @@
     $content = $Parsedown->text($markdown);
     
 
+//    $content = 'NONE';
+
     // Create main part of page content
     $settings = array(
-        "site_title" => "BACS 350 Projects",
-        "page_title" => "Markdown Parser", 
-        "logo"       => "Bear.png",
-        "style"      => 'style.css',
-        'user'       => '',
+        "site_title" => "Exterior Brain",
+        "page_title" => "A smarter tool", 
         "content"    => $content);
 
     echo render_page($settings);
