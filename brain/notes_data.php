@@ -192,7 +192,7 @@
     function note_list_view ($table) {
         global $page;
         $s = '<table>';
-        $s .= '<tr><th>Title</th><th>Body</th></tr>';
+        $s .= '<tr><th>Title/Edit</th><th>Date</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
             $title = $row[2];

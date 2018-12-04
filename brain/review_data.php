@@ -153,7 +153,7 @@
                 <p><label>page:</label> &nbsp; <input type="text" name="page"></p>
                 <p><label>designer:</label> &nbsp; <input type="text" name="designer"></p>
                 <p><label>reviewer:</label> &nbsp; <input type="text" name="reviewer"></p>
-                <p><label>scorecard:</label> &nbsp; <textarea name="scorecard"></textarea></p>
+                <p><label>scorecard:</label> &nbsp; <textarea name="scorecard" rows="20" cols="80"></textarea></p>
                 <p><label>score:</label> &nbsp; <input type="int" name="score"></p>
                 <p><input type="submit" value="Add review"/></p>
                 <input type="hidden" name="action" value="create">

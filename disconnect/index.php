@@ -1,16 +1,11 @@
 <?php
-//fix page log
-//fix add review
-    require_once 'views.php';
-    require_once 'db.php';    
-    require_once 'files.php';
-    require_once 'Parsedown.php';
-    require_once 'auth.php';
 
-    
+    require_once 'views.php';
+    require_once 'Parsedown.php';
+    require_once 'files.php';
 
     // Markdown Text
-    $markdown = read_file('brain.md');
+    $markdown = read_file('disconnect.md');
 
     // Convert the Markdown into HTML
     $Parsedown = new Parsedown();
@@ -19,8 +14,8 @@
 
     // Create main part of page content
     $settings = array(
-        "site_title" => "Exterior Brain",
-        "page_title" => "cosmenaut", 
+//        "site_title" => "",
+        "page_title" => "Northern Colorado Hardcore/Punk/Metal", 
         "content"    => $content);
 
     echo render_page($settings);

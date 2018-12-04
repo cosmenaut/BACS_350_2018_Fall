@@ -8,6 +8,8 @@ body {
     margin: 20px;
     padding: 10px;
     font-family: "Century Gothic", Helvetica, Arial, sans-serif;
+    background-image: url(BG1.png);
+
 }
 
 h1,
@@ -35,7 +37,7 @@ header img {
     border-radius: 0px;
     margin: 8px;
     width: 140px;
-    float: left;
+    float: right;
 }
 
 li {
@@ -82,4 +84,19 @@ td {
     margin: 20px;
     float: left;
     width: 40%;
+}
+
+footer {
+    border: 5px solid purple;
+    background-color: darkseagreen;
+    border-radius: 0px;
+    color: #0E3D65;
+}
+
+footer img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+
 }
